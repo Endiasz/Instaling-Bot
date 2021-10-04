@@ -2,7 +2,7 @@ var translations = {};
 // main loop
 
 function doIt() {
-    var toTranslate = document.querySelector("#question > div.caption > div.translations").innerHTML;
+    var toTranslate = document.querySelector("div.translations").innerHTML;
     var answer = document.querySelector("#answer");
 
     const btn = document.querySelector("#check");
@@ -14,16 +14,12 @@ function doIt() {
         // console.log("Answear page");
 
         if (checkTranslations(toTranslate, translations)) {
-            // answer = chcechForAnswear(toTranslate, translations);
             console.log("Znałem słowo");
 
 
         } else {
             translations = answearLearn(word, toTranslate, translations);
         }
-        // if()  znany toTranslate podaj else wygeneruj randomowy string i naucz się
-
-        // translations = answearLern(toTranslate, translations)
 
         const btn2 = setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
@@ -54,6 +50,7 @@ function doIt() {
             }
             answer.value = result;
             answer.placeholder = result;
+
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
                 btn1.click()
@@ -62,11 +59,11 @@ function doIt() {
     }
 }
 
-translations = inputTranslations();
+//translations = inputTranslations();
 
-setInterval(() => {
-    doIt(); // wykonaj wszystko
-}, 8000);
+// setInterval(() => {
+//     doIt(); // wykonaj wszystko
+// }, 8000);
 
 
 // Functions
@@ -83,10 +80,11 @@ function answearLearn(word, toTranslate, translations) {  // jeżeli nie znasz n
                 console.log("Słowo nauczone");
                 return translations;
             }
-            else console.error("Błąd (pozyskania słowa PL)");
-        } else
-            console.error("Błąd (pozyskania słowa DE)");
-    }
+        }
+        else console.error("Błąd (pozyskania słowa PL)");
+    } else
+        console.error("Błąd (pozyskania słowa DE)");
+
     return translations;
 }
 
@@ -146,16 +144,17 @@ function checkTranslations(toTranslate, translations) { // sprawdź czy mamy tak
 
 function endForToday(translations) { // wypisz cały zasobnik słów
     console.log(JSON.stringify(translations));
-    process.exit(0);
 }
 
-function haltuj() {
-    process.exit(0);
+function haltuj(translations) {
+    alert(translations);
 }
 
 function inputTranslations() {
     // var translations = prompt()
-    var translations = prompt("Podaj słownik słowa w odpowiednim formacie", "[tutaj słowa w odpowiednim formacie]");
-    translations = JSON.parse(translations);
-    return translations;
+    //var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "[tutaj słowa w odpowiednim formacie]");
+    // translations = JSON.parse(translationsToAssing);
+    // return translations;
 }
+
+// var myJson = JSON.parse(translations);

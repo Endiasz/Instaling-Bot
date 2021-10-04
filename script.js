@@ -159,5 +159,3 @@ function inputTranslations() {
     translations = JSON.parse(translations);
     return translations;
 }
-
-var myJSON = JSON.stringify(translations);

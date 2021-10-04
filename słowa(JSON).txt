@@ -1,0 +1,1 @@
+{"rękawiczka, rękawica":"der Handschuh","miejsce zamieszkania":"der Wohnort","skarpetka":"die Socke","kapelusz":"der Hut","nazwisko":"der Familienname","miejsce urodzenia":"der Geburtsort","krawat":"die Krawatte","wiek":"das Alter","żonaty, zamężna":"verheiratet","pasek":"der Gürtel","kurtka, marynarka, żakiet":"die Jacke"}

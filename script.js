@@ -1,14 +1,37 @@
-var translations = {};
+if (translations === undefined)
+    var translations = {};
+else if (translations == {})
+    translations = inputTranslations();
+
+
 // main loop
 
 function doIt() {
     var toTranslate = document.querySelector("div.translations").innerHTML;
     var answer = document.querySelector("#answer");
 
+    var delay = countDelay(toTranslate);
+
+    // var end1 = document.querySelector("#return_mainpage > h4");
+    // var end2 = document.querySelector("#session_result > p");
+    // var retmp = document.querySelector("#return_mainpage");
+    // var fpage = document.querySelector("#finish_page");
+
+    var sesresult = document.querySelector("#session_result");
+
+    if (sesresult.innerHTML != "") {
+        console.error("Koniec zadań na dzisiaj");
+        return;
+    }
+
     const btn = document.querySelector("#check");
 
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector(".speaker");
+
+    // if (end!=undefined){
+    //     return;
+    // }
 
     if (speaker.style.display != "none") {
         // console.log("Answear page");
@@ -24,7 +47,7 @@ function doIt() {
         const btn2 = setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
             btn2.click()
-        }, Math.random() * 2000 + 3000);
+        }, Math.random() * 1000 + 500);
 
     } else {
         // console.log("Question page");
@@ -36,7 +59,7 @@ function doIt() {
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
                 btn1.click()
-            }, Math.random() * 2000 + 3000);
+            }, delay);
 
         } else {
             console.log("randomowy string");
@@ -54,7 +77,7 @@ function doIt() {
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
                 btn1.click()
-            }, Math.random() * 2000 + 3000);
+            }, delay);
         }
     }
 }
@@ -62,8 +85,11 @@ function doIt() {
 //translations = inputTranslations();
 
 // setInterval(() => {
-//     doIt(); // wykonaj wszystko
-// }, 8000);
+//     setTimeout(() => {
+//         doIt(); // wykonaj wszystko
+//     }, 8500);
+
+// }, 9000);
 
 
 // Functions
@@ -152,9 +178,27 @@ function haltuj(translations) {
 
 function inputTranslations() {
     // var translations = prompt()
-    //var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "[tutaj słowa w odpowiednim formacie]");
-    // translations = JSON.parse(translationsToAssing);
-    // return translations;
+    var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "[tutaj słowa w odpowiednim formacie]");
+    translations = JSON.parse(translationsToAssing);
+    return translations;
 }
 
-// var myJson = JSON.parse(translations);
+function countDelay(toTranslate) {
+    var minDelay = 3000;
+    var count = 0;
+    for (var key in toTranslate) {
+
+        count++;
+    }
+    console.log(count);
+
+    if (count < 6)
+        return Math.round(Math.random() * 2000 + minDelay);
+    else if (count < 10)
+        return Math.round(Math.random() * 2000 + (minDelay + 3000));
+    else if (count < 15)
+        return Math.round(Math.random() * 2000 + (minDelay + 5000));
+    else
+        return Math.round(Math.random() * 2000 + (minDelay + 7000));
+
+}

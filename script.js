@@ -1,7 +1,7 @@
-if (translations === undefined)
-    var translations = {};
-else if (translations == {})
-    translations = inputTranslations();
+var translations = inputTranslations();
+
+// else if (translations == '')
+// translations = inputTranslations();
 
 
 // main loop
@@ -82,14 +82,15 @@ function doIt() {
     }
 }
 
-//translations = inputTranslations();
+//  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
-// setInterval(() => {
-//     setTimeout(() => {
-//         doIt(); // wykonaj wszystko
-//     }, 8500);
+setInterval(() => {
+    setTimeout(() => {
+        doIt(); // wykonaj wszystko
+    }, 8500);
+}, 9000);
 
-// }, 9000);
+//  TUTAJ JUŻ KONIEC TEJ PĘTLI MASZ
 
 
 // Functions
@@ -179,8 +180,10 @@ function haltuj(translations) {
 function inputTranslations() {
     // var translations = prompt()
     var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "[tutaj słowa w odpowiednim formacie]");
-    translations = JSON.parse(translationsToAssing);
-    return translations;
+    if (translationsToAssing != '') {
+        translations = JSON.parse(translationsToAssing);
+        return translations;
+    }else return {};
 }
 
 function countDelay(toTranslate) {

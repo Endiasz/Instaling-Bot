@@ -4,7 +4,7 @@ var errorsPerRun = 3;
 var iloscPowtorzen = 20; // + errorperrun
 var powt = 0;
 
-// main loop
+// main  loop
 
 function doIt(isError = false) {
     var toTranslate = document.querySelector("div.translations").innerHTML;

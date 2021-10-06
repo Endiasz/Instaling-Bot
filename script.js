@@ -1,22 +1,20 @@
 var translations = inputTranslations();
+if (translations != typeof Object) {
+    console.error("Błąd przy wczytywaniu danych");
+    return;
+}
 
-// else if (translations == '')
-// translations = inputTranslations();
+var errorsPerRun = 3;
+var iloscPowtorzen = 20;
+var powt = 0;
 
 
 // main loop
 
-function doIt() {
+function doIt(isError = false) {
     var toTranslate = document.querySelector("div.translations").innerHTML;
     var answer = document.querySelector("#answer");
-
     var delay = countDelay(toTranslate);
-
-    // var end1 = document.querySelector("#return_mainpage > h4");
-    // var end2 = document.querySelector("#session_result > p");
-    // var retmp = document.querySelector("#return_mainpage");
-    // var fpage = document.querySelector("#finish_page");
-
     var sesresult = document.querySelector("#session_result");
 
     if (sesresult.innerHTML != "") {
@@ -32,6 +30,11 @@ function doIt() {
     // if (end!=undefined){
     //     return;
     // }
+
+    if (isError) {
+
+    }
+
 
     if (speaker.style.display != "none") {
         // console.log("Answear page");
@@ -83,10 +86,22 @@ function doIt() {
 }
 
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
+var iloscPowtorzen = 20;
+var error
 
 setInterval(() => {
     setTimeout(() => {
-        doIt(); // wykonaj wszystko
+        if (Math.round(Math.random()) && errorsPerRun < 0) {
+
+            if (powt < iloscPowtorzen)
+                doIt(true); // wykonaj wszystko
+            errorsPerRun--;
+            powt++
+        } else {
+            if (powt < iloscPowtorzen)
+                doIt(); // wykonaj wszystko
+            powt++
+        }
     }, 8500);
 }, 9000);
 

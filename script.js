@@ -1,13 +1,8 @@
 var translations = inputTranslations();
-if (translations != typeof Object) {
-    console.error("Błąd przy wczytywaniu danych");
-    alert("Błąd przy wczytywaniu danych (Źle podałeś dane majster)");
-}
 
 var errorsPerRun = 3;
 var iloscPowtorzen = 20; // + errorperrun
 var powt = 0;
-
 
 // main loop
 
@@ -87,8 +82,10 @@ setInterval(() => {
     setTimeout(() => {
         if (Math.round(Math.random()) && errorsPerRun < 0) {
 
-            if (powt < iloscPowtorzen)
+            if (powt < iloscPowtorzen) {
                 doIt(true); // wykonaj wszystko
+                console.log("Intencjonalny błąd")
+            }
             errorsPerRun--;
             powt++
         } else {
@@ -214,10 +211,8 @@ function countDelay(toTranslate) {
     var minDelay = 3000;
     var count = 0;
     for (var key in toTranslate) {
-
         count++;
     }
-    console.log(count);
 
     if (count < 6)
         return Math.round(Math.random() * 2000 + minDelay);

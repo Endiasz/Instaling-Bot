@@ -203,7 +203,7 @@ function haltuj(translations) {
 
 function inputTranslations() {
     // var translations = prompt()
-    var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "[tutaj słowa w odpowiednim formacie]");
+    var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "");
     if (translationsToAssing != '') {
         translations = JSON.parse(translationsToAssing);
         return translations;

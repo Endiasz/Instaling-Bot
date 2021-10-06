@@ -1,11 +1,11 @@
 var translations = inputTranslations();
 if (translations != typeof Object) {
     console.error("Błąd przy wczytywaniu danych");
-    return;
+    alert("Błąd przy wczytywaniu danych (Źle podałeś dane majster)");
 }
 
 var errorsPerRun = 3;
-var iloscPowtorzen = 20;
+var iloscPowtorzen = 20; // + errorperrun
 var powt = 0;
 
 
@@ -27,22 +27,11 @@ function doIt(isError = false) {
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector(".speaker");
 
-    // if (end!=undefined){
-    //     return;
-    // }
-
-    if (isError) {
-
-    }
-
-
     if (speaker.style.display != "none") {
         // console.log("Answear page");
 
         if (checkTranslations(toTranslate, translations)) {
             console.log("Znałem słowo");
-
-
         } else {
             translations = answearLearn(word, toTranslate, translations);
         }
@@ -56,7 +45,12 @@ function doIt(isError = false) {
         // console.log("Question page");
 
         if (checkTranslations(toTranslate, translations)) {
-            var temp = chcechForAnswear(toTranslate, translations);
+
+            if (isError)
+                var temp = generateString(toTranslate);
+            else
+                var temp = chcechForAnswear(toTranslate, translations);
+
             answer.value = temp;
             answer.placeholder = temp;
             setTimeout(() => {
@@ -67,15 +61,17 @@ function doIt(isError = false) {
         } else {
             console.log("randomowy string");
 
-            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            var charactersLength = characters.length;
-            var result = "";
+            // var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            // var charactersLength = characters.length;
+            // var result = "";
 
-            for (var i = 0; i < 6; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            answer.value = result;
-            answer.placeholder = result;
+            // for (var i = 0; i < 6; i++) {
+            //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            // }
+
+
+            answer.value = generateString(toTranslate);
+            answer.placeholder = answer.value;
 
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
@@ -86,8 +82,6 @@ function doIt(isError = false) {
 }
 
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
-var iloscPowtorzen = 20;
-var error
 
 setInterval(() => {
     setTimeout(() => {
@@ -105,7 +99,7 @@ setInterval(() => {
     }, 8500);
 }, 9000);
 
-//  TUTAJ JUŻ KONIEC TEJ PĘTLI MASZ
+//  TUTAJ JUŻ KONIEC TEJ PĘTLI
 
 
 // Functions
@@ -183,14 +177,29 @@ function checkTranslations(toTranslate, translations) { // sprawdź czy mamy tak
     return false;
 }
 
+function generateString(txtToLenght) {
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    var result = "";
+    if (txtToLenght < 3) {
+        txtToLenght = 5;
+    }
 
-function endForToday(translations) { // wypisz cały zasobnik słów
+    for (var i = 0; i < (txtToLenght.length + Math.random() * 5 + -3); i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     console.log(JSON.stringify(translations));
+    alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 
 function haltuj(translations) {
     alert(translations);
 }
+
 
 function inputTranslations() {
     // var translations = prompt()

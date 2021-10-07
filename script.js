@@ -221,6 +221,6 @@ function countDelay(toTranslate) {
     else if (count < 15)
         return Math.round(Math.random() * 2000 + (minDelay + 5000));
     else
-        return Math.round(Math.random() * 2000 + (minDelay + 7000));
+        return Math.round(Math.random() * 2000 + (minDelay + 6000));
 
 }

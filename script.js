@@ -79,7 +79,7 @@ function doIt(isError = false) {
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 setInterval(() => {
-    setTimeout(() => {
+
         if (Math.round(Math.random()) && errorsPerRun < 0) {
 
             if (powt < iloscPowtorzen) {
@@ -93,7 +93,6 @@ setInterval(() => {
                 doIt(); // wykonaj wszystko
             powt++
         }
-    }, 8500);
 }, 9000);
 
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI

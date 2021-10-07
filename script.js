@@ -96,10 +96,6 @@ setInterval(() => {
         console.log("Intencjonalny błąd")
         errorsPerRun--;
         powt++
-        // } else {
-        // doIt(); // wykonaj wszystko
-        // powt++
-        // }
     } else if (powt < iloscPowtorzen) {
 
         // if (powt < iloscPowtorzen) {

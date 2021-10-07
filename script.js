@@ -47,10 +47,11 @@ function doIt(isError = false) {
             translations = answearLearn(word, toTranslate, translations);
         }
 
-        const btn2 = setTimeout(() => {
+        setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
+            // console.log("nextword");
             btn2.click()
-        }, Math.random() * 1000 + 500);
+        }, Math.random() * 1000 + 2000);
 
     } else {
         // console.log("Question page");
@@ -66,26 +67,18 @@ function doIt(isError = false) {
             answer.placeholder = temp;
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
+                // console.log("check");
                 btn1.click()
             }, delay);
 
         } else {
             console.log("randomowy string");
-
-            // var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            // var charactersLength = characters.length;
-            // var result = "";
-
-            // for (var i = 0; i < 6; i++) {
-            //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            // }
-
-
             answer.value = generateString(toTranslate);
             answer.placeholder = answer.value;
 
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
+                // console.log("check");
                 btn1.click()
             }, delay);
         }
@@ -95,29 +88,28 @@ function doIt(isError = false) {
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 setInterval(() => {
-    setTimeout(() => {
 
-        if (Math.round(Math.random()) && errorsPerRun < 0) {
+    if (Math.round(Math.random()) && errorsPerRun < 0 && powt < iloscPowtorzen) {
 
-            if (powt < iloscPowtorzen) {
-                doIt(true); // wykonaj wszystko
-                console.log("Intencjonalny błąd")
-                errorsPerRun--;
-                powt++
-            } else {
-                doIt(); // wykonaj wszystko
-                powt++
-            }
-        } else {
+        // if (powt < iloscPowtorzen) {
+        doIt(true); // wykonaj wszystko
+        console.log("Intencjonalny błąd")
+        errorsPerRun--;
+        powt++
+        // } else {
+        // doIt(); // wykonaj wszystko
+        // powt++
+        // }
+    } else if (powt < iloscPowtorzen) {
 
-            if (powt < iloscPowtorzen) {
-                doIt(); // wykonaj wszystko
-                powt++
-            } else
-                console.log("Zrobiłem powtóżenia");
-        }
-    }, 8900);
-}, 9000);
+        // if (powt < iloscPowtorzen) {
+        doIt(); // wykonaj wszystko
+        powt++
+    }
+    else
+        console.log("Zrobiłem powtóżenia");
+
+}, 11000);
 
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
 
@@ -246,8 +238,8 @@ function countDelay(toTranslate) {
     else if (count < 10)
         return Math.round(Math.random() * 2000 + (minDelay + 3000));
     else if (count < 15)
-        return Math.round(Math.random() * 2000 + (minDelay + 5000));
+        return Math.round(Math.random() * 2000 + (minDelay + 4000));
     else
-        return Math.round(Math.random() * 2000 + (minDelay + 6000));
+        return Math.round(Math.random() * 2000 + (minDelay + 5000));
 
 }

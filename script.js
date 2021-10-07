@@ -30,10 +30,10 @@ function doIt(isError = false) {
     if (newWord.style.display != "none") {
         console.log("Pomijam słówko");
         document.querySelector("#dont_know_new").click();
-        return;
         setTimeout(() => {
             document.querySelector("#skip").click();
         }, 1000);
+        return;
     }
 
 

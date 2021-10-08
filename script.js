@@ -1,7 +1,7 @@
 var translations = inputTranslations();
 
 var errorsPerRun = 3;
-var iloscPowtorzen = 20; // + errorperrun
+var iloscPowtorzen = 50; // + errorperrun
 var powt = 0;
 
 // main loop

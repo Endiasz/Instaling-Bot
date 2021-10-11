@@ -38,14 +38,9 @@ function doIt(isError = false) {
 
 
 
-    if (speaker.style.display != "none") {
+    if (speaker.style.display != "none" && checkTranslations(toTranslate, translations)) {  // Knowed Word
         // console.log("Answear page");
-
-        if (checkTranslations(toTranslate, translations)) {
-            console.log("Znałem słowo");
-        } else {
-            translations = answearLearn(word, toTranslate, translations);
-        }
+        console.log("Znałem słowo");
 
         setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
@@ -53,23 +48,35 @@ function doIt(isError = false) {
             btn2.click()
         }, Math.random() * 1000 + 2000);
 
+    } else if (speaker.style.display != "none") {   // Unknowed Word
+        translations = answearLearn(word, toTranslate, translations);
+
+        setTimeout(() => {
+            const btn2 = document.querySelector("#nextword");
+            // console.log("nextword");
+            btn2.click()
+        }, Math.random() * 1000 + 2000);
+
+    } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
+
+        if (isError)
+            var temp = generateString(toTranslate);
+        else
+            var temp = chcechForAnswear(toTranslate, translations);
+
+        answer.value = temp;
+        answer.placeholder = temp;
+        setTimeout(() => {
+            const btn1 = document.querySelector("#check");
+            // console.log("check");
+            btn1.click()
+        }, delay);
+
     } else {
         // console.log("Question page");
 
         if (checkTranslations(toTranslate, translations)) {
 
-            if (isError)
-                var temp = generateString(toTranslate);
-            else
-                var temp = chcechForAnswear(toTranslate, translations);
-
-            answer.value = temp;
-            answer.placeholder = temp;
-            setTimeout(() => {
-                const btn1 = document.querySelector("#check");
-                // console.log("check");
-                btn1.click()
-            }, delay);
 
         } else {
             console.log("randomowy string");

@@ -237,7 +237,7 @@ function inputTranslations() {
     if (translationsToAssing != '') {
         translations = JSON.parse(translationsToAssing);
         return translations;
-    } else return {};
+    } else return '{}';
 }
 
 function countDelay(toTranslate) {

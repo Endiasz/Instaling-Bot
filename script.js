@@ -99,7 +99,22 @@ function doIt(isError = false) {
     }
 }
 
+
+
+
+
+
+
+
+
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
+
+
+
+
+
+
+
 
 setInterval(() => {
 

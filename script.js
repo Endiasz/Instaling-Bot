@@ -3,7 +3,7 @@ var newWrods = [];
 var numbOfNewW = 0;
 
 var errorsPerRun = 3;
-var iloscPowtorzen = 50; // + errorperrun
+var iloscPowtorzen = 50;
 var powt = 0;
 
 // main loop
@@ -128,7 +128,7 @@ function doIt(isError = false) {
 
 setInterval(() => {
 
-    if (Math.round(Math.random()) && errorsPerRun > 0 && powt < iloscPowtorzen) {
+    if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
         // if (powt < iloscPowtorzen) {
         doIt(true); // wykonaj wszystko
@@ -283,19 +283,18 @@ function inputTranslations() {
 }
 
 function countDelay(toTranslate) {
-    var minDelay = 3000;
     var count = 0;
     for (var key in toTranslate) {
         count++;
     }
 
     if (count < 6)
-        return Math.round(Math.random() * 2000 + minDelay);
+        return Math.round(Math.random() * 2000 + 3000);
     else if (count < 10)
-        return Math.round(Math.random() * 2000 + (minDelay + 3000));
+        return Math.round(Math.random() * 2000 + 6000);
     else if (count < 15)
-        return Math.round(Math.random() * 2000 + (minDelay + 4000));
+        return Math.round(Math.random() * 2000 + 7000);
     else
-        return Math.round(Math.random() * 2000 + (minDelay + 5000));
+        return Math.round(Math.random() * 2000 + 8000);
 
 }

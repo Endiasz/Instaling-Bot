@@ -41,11 +41,12 @@ function doIt(isError = false) {
         return;
     }
 
-
+    // Main logic
 
     if (speaker.style.display != "none" && checkTranslations(toTranslate, translations)) {  // Knowed Word
         // console.log("Answear page");
-        console.log("Znałem słowo");
+
+        console.log("Znam słowo");
 
         setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
@@ -54,23 +55,25 @@ function doIt(isError = false) {
         }, Math.random() * 1000 + 2000);
 
     } else if (speaker.style.display != "none") {   // Unknowed Word, learn
+        // console.log("Answear page");
+
         translations = answearLearn(word, toTranslate, translations);
         newWrods[toTranslate] = word;
         numbOfNewW++;
-        console.log("Nowe słowo");
+        console.log("Nowe słówko");
 
         setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
             // console.log("nextword");
-            btn2.click()
+            btn2.click();
         }, Math.random() * 1000 + 2000);
 
-    } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
+    } else if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
+        errorsPerRun--;
+        console.log("Intencjonalny błąd")
 
-        if (isError)
-            var temp = generateString(toTranslate);
-        else
-            var temp = chcechForAnswear(toTranslate, translations);
+        var temp = generateString(toTranslate);
+
 
         answer.value = temp;
         answer.placeholder = temp;
@@ -78,7 +81,18 @@ function doIt(isError = false) {
             const btn1 = document.querySelector("#check");
             btn1.click()
         }, delay);
+        return;
 
+    } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
+
+        var temp = chcechForAnswear(toTranslate, translations);
+
+        answer.value = temp;
+        answer.placeholder = temp;
+        setTimeout(() => {
+            const btn1 = document.querySelector("#check");
+            btn1.click()
+        }, delay);
     } else {
         // console.log("Question page");
 
@@ -114,12 +128,10 @@ function doIt(isError = false) {
 
 setInterval(() => {
 
-    if (Math.round(Math.random()) && errorsPerRun < 0 && powt < iloscPowtorzen) {
+    if (Math.round(Math.random()) && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
         // if (powt < iloscPowtorzen) {
         doIt(true); // wykonaj wszystko
-        console.log("Intencjonalny błąd")
-        errorsPerRun--;
         powt++
     } else if (powt < iloscPowtorzen) {
 

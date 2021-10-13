@@ -1,4 +1,6 @@
 var translations = inputTranslations();
+var newWrods = [];
+var numbOfNewW = 0;
 
 var errorsPerRun = 3;
 var iloscPowtorzen = 50; // + errorperrun
@@ -27,7 +29,10 @@ function doIt(isError = false) {
     var speaker = document.querySelector(".speaker");
 
     // Sprawdź czy jest strona new word
+
+
     if (newWord.style.display != "none") {
+
         console.log("Pomijam słówko");
         document.querySelector("#dont_know_new").click();
         setTimeout(() => {
@@ -48,8 +53,11 @@ function doIt(isError = false) {
             btn2.click()
         }, Math.random() * 1000 + 2000);
 
-    } else if (speaker.style.display != "none") {   // Unknowed Word
+    } else if (speaker.style.display != "none") {   // Unknowed Word, learn
         translations = answearLearn(word, toTranslate, translations);
+        newWrods[toTranslate] = word;
+        numbOfNewW++;
+        console.log("Nowe słowo");
 
         setTimeout(() => {
             const btn2 = document.querySelector("#nextword");
@@ -68,7 +76,6 @@ function doIt(isError = false) {
         answer.placeholder = temp;
         setTimeout(() => {
             const btn1 = document.querySelector("#check");
-            // console.log("check");
             btn1.click()
         }, delay);
 
@@ -128,6 +135,7 @@ function answearLearn(word, toTranslate, translations) {  // jeżeli nie znasz n
         if (translations != undefined) {
 
             if (toTranslate != undefined) {
+
                 translations[toTranslate] = word;
                 console.log("Słowo nauczone");
                 return translations;

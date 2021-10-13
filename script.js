@@ -107,13 +107,9 @@ function doIt(isError = false) {
 
 
 
+
+
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
-
-
-
-
-
-
 
 
 setInterval(() => {
@@ -137,6 +133,17 @@ setInterval(() => {
 }, 11000);
 
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Functions

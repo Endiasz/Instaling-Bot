@@ -141,6 +141,7 @@ var TheLoopInterval = setInterval(() => {
     }
     else
         console.log("Zrobiłem powtóżenia");
+    stopTheLoop();
 
 }, 11000);
 
@@ -268,7 +269,7 @@ function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 
-function stopTheLoop(translations) {
+function stopTheLoop() {
     clearInterval(TheLoopInterval)
 }
 

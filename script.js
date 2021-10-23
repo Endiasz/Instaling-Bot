@@ -126,7 +126,7 @@ function doIt(isError = false) {
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 
-setInterval(() => {
+var TheLoopInterval = setInterval(() => {
 
     if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
@@ -268,8 +268,8 @@ function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 
-function haltuj(translations) {
-    alert(translations);
+function stopTheLoop(translations) {
+    clearInterval(TheLoopInterval)
 }
 
 

@@ -36,12 +36,13 @@ function doIt(isError = false) {
         console.log("Pomijam słówko");
         document.querySelector("#dont_know_new").click();
         setTimeout(() => {
+            //document.querySelector("#possible_word").click() // Testowanie in progres
             document.querySelector("#skip").click();
         }, 1000);
         return;
     }
 
-    // Main logic
+    // Main logic MAGIC
 
     if (speaker.style.display != "none" && checkTranslations(toTranslate, translations)) {  // Knowed Word
         // console.log("Answear page");

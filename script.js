@@ -127,7 +127,9 @@ function doIt(isError = false) {
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 
-var TheLoopInterval = setInterval(() => {
+// var TheLoopInterval = 
+setInterval(() => {
+    console.log("LOOP");
 
     if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
@@ -142,7 +144,7 @@ var TheLoopInterval = setInterval(() => {
     }
     else
         console.log("Zrobiłem powtóżenia");
-    stopTheLoop();
+    //stopTheLoop();
 
 }, 11000);
 
@@ -271,7 +273,7 @@ function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
 }
 
 function stopTheLoop() {
-    clearInterval(TheLoopInterval)
+    //clearInterval(TheLoopInterval)
 }
 
 

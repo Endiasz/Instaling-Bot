@@ -140,8 +140,16 @@ function doIt(isError = false) {
         console.error("Coś tu się odkurwiło !? XDDD");
     }
 }
-//  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
+
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+//              Main calling
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
 
 var TheLoopInterval = setInterval(() => {
     if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {

@@ -116,14 +116,6 @@ function doIt(isError = false) {
 
 
 
-
-
-
-
-
-
-
-
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 
@@ -151,17 +143,6 @@ var TheLoopInterval =
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
 
 
-
-
-
-
-
-
-
-
-
-
-
 // Functions
 
 
@@ -186,7 +167,6 @@ function answearLearn(word, toTranslate, translations) {  // jeżeli nie znasz n
     return translations;
 }
 
-
 function chcechForAnswear(toTranslate, translations) { //poszukaj odpowiednego słowa w zasobniku
     var isDone = false;
 
@@ -209,7 +189,6 @@ function chcechForAnswear(toTranslate, translations) { //poszukaj odpowiednego s
         } else console.error("chcechForAnswear (toTranslate undefined)");
     } else console.error("chcechForAnswear (translations undefined)");
 }
-
 
 function checkTranslations(toTranslate, translations) { // sprawdź czy mamy takie słowo 
     var isLerned = false;
@@ -266,19 +245,16 @@ function generateString(txtToLenght) {
     return result;
 }
 
-
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     console.log(JSON.stringify(translations));
     alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 
 function stopTheLoop() {
-    //clearInterval(TheLoopInterval)
+    clearInterval(TheLoopInterval)
 }
 
-
 function inputTranslations() {
-    // var translations = prompt()
     var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "");
     if (translationsToAssing != '') {
         translations = JSON.parse(translationsToAssing);

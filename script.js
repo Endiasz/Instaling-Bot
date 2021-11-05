@@ -75,7 +75,6 @@ function doIt(isError = false) {
 
         var temp = generateString(toTranslate);
 
-
         answer.value = temp;
         answer.placeholder = temp;
         setTimeout(() => {
@@ -99,7 +98,6 @@ function doIt(isError = false) {
 
         if (checkTranslations(toTranslate, translations)) {
 
-
         } else {
             console.log("randomowy string");
             answer.value = generateString(toTranslate);
@@ -119,26 +117,26 @@ function doIt(isError = false) {
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 
-var TheLoopInterval =
-    setInterval(() => {
-        console.log("LOOP");
+var TheLoopInterval = setInterval(() => {
+    console.log("LOOP");
 
-        if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
+    if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
-            // if (powt < iloscPowtorzen) {
-            doIt(true); // wykonaj wszystko
-            powt++
-        } else if (powt < iloscPowtorzen) {
+        // if (powt < iloscPowtorzen) {
+        doIt(true); // wykonaj wszystko
+        powt++
+    } else if (powt < iloscPowtorzen) {
 
-            // if (powt < iloscPowtorzen) {
-            doIt(); // wykonaj wszystko
-            powt++
-        }
-        else
-            console.log("Zrobiłem powtóżenia");
+        // if (powt < iloscPowtorzen) {
+        doIt(); // wykonaj wszystko
+        powt++
+    }
+    else {
+        console.log("Zrobiłem powtóżenia");
         stopTheLoop();
+    }
 
-    }, 11000);
+}, 11000);
 
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
 

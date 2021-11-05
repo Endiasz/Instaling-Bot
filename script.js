@@ -2,7 +2,7 @@ var translations = inputTranslations();
 var newWrods = [];
 var numbOfNewW = 0;
 
-var errorsPerRun = 3;
+var errorsPerRun = 0;
 var iloscPowtorzen = 50;
 var powt = 0;
 
@@ -127,26 +127,26 @@ function doIt(isError = false) {
 //  TUTAJ OGÓŁEM MASZ PENTLĘ KTORĄ SIĘ SAMA WYKONUJE 
 
 
-// var TheLoopInterval = 
-setInterval(() => {
-    console.log("LOOP");
+var TheLoopInterval =
+    setInterval(() => {
+        console.log("LOOP");
 
-    if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
+        if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
-        // if (powt < iloscPowtorzen) {
-        doIt(true); // wykonaj wszystko
-        powt++
-    } else if (powt < iloscPowtorzen) {
+            // if (powt < iloscPowtorzen) {
+            doIt(true); // wykonaj wszystko
+            powt++
+        } else if (powt < iloscPowtorzen) {
 
-        // if (powt < iloscPowtorzen) {
-        doIt(); // wykonaj wszystko
-        powt++
-    }
-    else
-        console.log("Zrobiłem powtóżenia");
-    //stopTheLoop();
+            // if (powt < iloscPowtorzen) {
+            doIt(); // wykonaj wszystko
+            powt++
+        }
+        else
+            console.log("Zrobiłem powtóżenia");
+        stopTheLoop();
 
-}, 11000);
+    }, 11000);
 
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
 

@@ -2,12 +2,24 @@
     "manifest_version": 2,
     "name": "Instaling Bot",
     "version": "0.1",
-    "content_script": [
+    "content_scripts": [
         {
             "matches": [
                 "<all_urls>"
             ],
-            "js": "content.js"
+            "js": [
+                "content.js"
+            ]
         }
-    ]
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "browser_action": {
+        "default_icon": "img/logo.png",
+        "default_popup": "popup/popup.html",
+        "default_title": "He he"
+    }
 }

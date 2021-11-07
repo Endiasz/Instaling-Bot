@@ -1,7 +1,7 @@
 const container = document.querySelector(".container")
 const showWords = document.querySelector(".showTranslations");
 
-var infos = {
+var words = {
     'honker': 'pojazd',
     'maslo': 'jedzenie',
     'kebab': 'jedzenie',
@@ -11,8 +11,8 @@ var clicked = false;
 showWords.addEventListener("click", () => {
     if (!clicked) {
 
-        for (var ele in infos) {
-            var val = infos[ele];
+        for (var ele in words) {
+            var val = words[ele];
             console.log(ele, "\tto\t", val);
             const newDiv = document.createElement("div");
             newDiv.classList.add("element");
@@ -38,4 +38,16 @@ function saveTranslations(trans) {
     }
 }
 
-saveTranslations(infos)
+saveTranslations(words)
+
+
+chrome.runtime.onMessage.addListener(gotMesssage);
+
+function gotMesssage(message, sender, sendResponse) {
+    if (message.destination === undefined) {
+        console.log("Mam wiadomość ale bez przeznaczenia")
+    }
+    if (message.destination == "inputTranslation") {
+        message.translations = words;
+    }
+}

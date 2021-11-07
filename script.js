@@ -13,8 +13,8 @@ var numbOfNewW = 0;
 var powt = 0;
 
 // laod bellow
-var errorsPerRun = prompt("Podaj liczbę błędó", 3);
-var iloscPowtorzen = prompt("Podaj ilość powtóżeń", 50);
+var errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
+var iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
 
 if (!(errorsPerRun >= 0)) {
     var errorsPerRun = 3;

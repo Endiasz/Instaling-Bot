@@ -1,18 +1,42 @@
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+//              Loading all data
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+
 var translations = inputTranslations();
 var newWrods = [];
 var numbOfNewW = 0;
-
-var errorsPerRun = 0;
-var iloscPowtorzen = 50;
 var powt = 0;
+
+// laod bellow
+var errorsPerRun = prompt("Podaj liczbę błędó", 3);
+var iloscPowtorzen = prompt("Podaj ilość powtóżeń", 50);
+
+if (!(errorsPerRun >= 0)) {
+    var errorsPerRun = 3;
+}
+
+if (!(iloscPowtorzen > 0)) {
+    var iloscPowtorzen = 50;
+}
 
 // main loop
 
 function doIt(isError = false) {
 
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+
+    //              Get all elements
+
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+
     var newWord = document.querySelector("#new_word_form");
-
-
     var toTranslate = document.querySelector("div.translations").innerHTML;
     var answer = document.querySelector("#answer");
     var delay = countDelay(toTranslate);
@@ -317,3 +341,5 @@ function countDelay(toTranslate) {
         return Math.round(Math.random() * 2000 + 8000);
 
 }
+
+

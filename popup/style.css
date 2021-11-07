@@ -9,10 +9,36 @@ body {
     width: 100%;
     margin-top: .3rem;
     display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.interface {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 p {
     margin: .5rem 5rem;
     text-align: center;
     border: solid rebeccapurple 1px;
+}
+
+.btn {
+    background-color: rebeccapurple;
+    color: crimson;
+    border-radius: 5px;
+    margin: .3rem;
+    padding: .3rem;
+}
+
+.element {
+    padding: 2%;
+    border: 2px dotted blue;
+    border-radius: 5px;
+    margin: .3rem;
+    min-width: 2rem;
+    min-height: 1.3rem;
+    line-break: none;
 }

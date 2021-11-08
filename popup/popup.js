@@ -1,5 +1,7 @@
 const container = document.querySelector(".container")
 const showWords = document.querySelector(".showTranslations");
+const loopStart = document.querySelector(".startBot");
+const loopStop = document.querySelector(".stopBot");
 
 var words = {
     'honker': 'pojazd',
@@ -8,6 +10,9 @@ var words = {
     'hunda': 'pojazd'
 }
 var clicked = false;
+
+// clicked button to show words
+
 showWords.addEventListener("click", () => {
     if (!clicked) {
 
@@ -44,10 +49,23 @@ saveTranslations(words)
 chrome.runtime.onMessage.addListener(gotMesssage);
 
 function gotMesssage(message, sender, sendResponse) {
-    if (message.destination === undefined) {
+    if (message.desire === undefined) {
         console.log("Mam wiadomość ale bez przeznaczenia")
     }
-    if (message.destination == "inputTranslation") {
-        message.translations = words;
+    if (message.desire == "inputTranslation") {
+        message.translations = sendResponse;
     }
 }
+
+loopStart.addEventListener(() => {
+    chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    }, () => {
+        console.log(tabs)
+    })
+    let msg = {
+        txt: "Hello"
+    }
+    chrome.tabs.sendMessage(tab.id, msg)
+})

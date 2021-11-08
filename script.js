@@ -342,4 +342,28 @@ function countDelay(toTranslate) {
 
 }
 
+// Bot side of the project
+
+chrome.runtime.onMessage.addListener(gotMesssage);
+
+function gotMesssage(request, sender, sendResponse) {
+
+    if (request.desire === undefined) {
+        return;
+    }
+    if (request.desire === "getTranslations") {
+        translations.desire = "inputTranslation"
+        sendResponse(translations)
+    }
+
+    if (request.stateOfBot === undefined) {
+
+    } else if (request.stateOfBot === "run") {
+        TheLoopInterval;
+    } else if (request.stateOfBot === "stop") {
+        stopTheLoop(TheLoopInterval);
+    }
+
+
+}
 

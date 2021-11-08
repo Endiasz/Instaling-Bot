@@ -26,10 +26,10 @@ p {
 }
 
 .btn {
-    background-color: rebeccapurple;
-    color: crimson;
+    background-color: rgb(95, 95, 95);
+    color: rgb(231, 231, 231);
     border-radius: 5px;
-    margin: .3rem;
+    margin: 0 .3rem;
     padding: .3rem;
 }
 

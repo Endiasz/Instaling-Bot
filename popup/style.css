@@ -2,6 +2,8 @@ body {
     min-width: 20rem;
     min-height: 15rem;
     font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: bisque;
 }
 
 .container {
@@ -38,7 +40,7 @@ p {
     border: 2px dotted blue;
     border-radius: 5px;
     margin: .3rem;
-    min-width: 2rem;
     min-height: 1.3rem;
+    width: 100%;
     line-break: none;
 }

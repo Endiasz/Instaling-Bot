@@ -3,12 +3,10 @@ const showWords = document.querySelector(".showTranslations");
 const loopStart = document.querySelector(".startBot");
 const loopStop = document.querySelector(".stopBot");
 
-var words = {
-    'honker': 'pojazd',
-    'maslo': 'jedzenie',
-    'kebab': 'jedzenie',
-    'hunda': 'pojazd'
-}
+var words =
+    { "rękawica": "der Handschuh", "miejsce zamieszkania": "der Wohnort", "skarpetka": "die Socke", "kapelusz": "der Hut", "nazwisko": "der Familienname", "miejsce urodzenia": "der Geburtsort", "krawat": "die Krawatte", "wiek": "das Alter", "żonaty, zamężna": "verheiratet", "pasek": "der Gürtel", "kurtka, marynarka, żakiet": "die Jacke", "płeć": "das Geschlecht", "koszula": "das Hemd", "nieżonaty, niezamężna": "ledig", "garnitur": "der Anzug", "spodnie": "die Hose", "czapka": "die Mütze", "imię": "der Vorname", "data urodzenia": "das Geburtsdatum", "zawód (profesja)": "der Beruf", "Morze Śródziemne": "das Mittelmeer", "góry": "das Gebirge", "Morze Bałtyckie": "die Ostsee" }
+
+
 var clicked = false;
 
 // clicked button to show words
@@ -57,15 +55,50 @@ function gotMesssage(message, sender, sendResponse) {
     }
 }
 
-loopStart.addEventListener(() => {
-    chrome.tabs.query({
+loopStart.addEventListener('click', btnStart)
+function btnStart() {
+
+    console.log("Start bot");
+
+    let params = {
         active: true,
         currentWindow: true
-    }, () => {
-        console.log(tabs)
-    })
-    let msg = {
-        txt: "Hello"
     }
-    chrome.tabs.sendMessage(tab.id, msg)
-})
+    chrome.tabs.query(params, gotTabs);
+    function gotTabs(tabs) {
+        console.log(tabs[0])
+        let msg = {
+            active: true
+        }
+
+        chrome.tabs.sendMessage(tabs[0].id, msg)
+    }
+
+    msg = {
+        active: undefined
+    }
+}
+
+loopStop.addEventListener('click', btnStop)
+function btnStop() {
+
+    console.log("Start bot");
+
+    let params = {
+        active: true,
+        currentWindow: true
+    }
+    chrome.tabs.query(params, gotTabs);
+    function gotTabs(tabs) {
+        console.log(tabs[0])
+        let msg = {
+            active: false
+        }
+
+        chrome.tabs.sendMessage(tabs[0].id, msg)
+    }
+
+    msg = {
+        active: undefined
+    }
+}

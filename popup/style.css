@@ -32,7 +32,7 @@ p {
     background-color: rgb(95, 95, 95);
     color: rgb(231, 231, 231);
     border-radius: 5px;
-    margin: 0 .3rem;
+    margin: .3rem .3rem;
     padding: .3rem;
 }
 

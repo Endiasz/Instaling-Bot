@@ -45,3 +45,10 @@ p {
     width: 100%;
     line-break: none;
 }
+
+.logs {
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0.1rem;
+    border-radius: 10px;
+}

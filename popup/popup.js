@@ -75,14 +75,15 @@ function btnStart() {
     }
 
     msg = {
-        active: undefined
     }
 }
 
+
+
+
 loopStop.addEventListener('click', btnStop)
 function btnStop() {
-
-    console.log("Start bot");
+    console.log("Stop bot");
 
     let params = {
         active: true,
@@ -90,7 +91,12 @@ function btnStop() {
     }
     chrome.tabs.query(params, gotTabs);
     function gotTabs(tabs) {
-        console.log(tabs[0])
+        var currentUrl = tabs[0].url;
+        if (currentUrl.indexOf("instaling.pl") != -1) {
+            console.log(currentUrl);
+        } else {
+            console.log("No instaling window currently on see");
+        }
         let msg = {
             active: false
         }
@@ -99,6 +105,5 @@ function btnStop() {
     }
 
     msg = {
-        active: undefined
     }
 }

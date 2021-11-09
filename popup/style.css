@@ -23,6 +23,7 @@ body {
 
 p {
     margin: .5rem 5rem;
+    padding: .3rem;
     text-align: center;
     border: solid rebeccapurple 1px;
 }
@@ -37,7 +38,7 @@ p {
 
 .element {
     padding: 5px;
-    border: 2px dotted blue;
+    border: 2px solid blue;
     border-radius: 5px;
     margin: .3rem;
     min-height: 1.3rem;

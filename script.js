@@ -13,8 +13,8 @@ var numbOfNewW = 0;
 var powt = 0;
 
 // laod bellow
-var errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
-var iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
+var errorsPerRun = 3;
+var iloscPowtorzen = 50;
 
 if (!(errorsPerRun >= 0)) {
     var errorsPerRun = 3;
@@ -41,6 +41,10 @@ function doIt(isError = false) {
     var answer = document.querySelector("#answer");
     var delay = countDelay(toTranslate);
     var sesresult = document.querySelector("#session_result");
+    var continueSesion = document.querySelector("#continue_session_page");
+    var continueSesionBtn = document.querySelector("#continue_session_button");
+    var startSesion = document.querySelector("#start_session_page");
+    var startSesionBtn = document.querySelector("#start_session_button");
 
 
 
@@ -51,6 +55,8 @@ function doIt(isError = false) {
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
+
+
 
     if (sesresult.innerHTML != "") {
         console.error("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
@@ -175,7 +181,13 @@ function doIt(isError = false) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
+var firstLoop = true;
+
 var TheLoopInterval = setInterval(() => {
+    if(firstLoop){
+        stopTheLoop();
+    }
+    
     if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
         // if (powt < iloscPowtorzen) {
@@ -193,6 +205,7 @@ var TheLoopInterval = setInterval(() => {
         stopTheLoop();
     }
 
+firstLoop = false;
 }, 11000);
 
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
@@ -349,19 +362,35 @@ chrome.runtime.onMessage.addListener(gotMesssage);
 function gotMesssage(request, sender, sendResponse) {
 
     if (request.desire === undefined) {
-        return;
-    }
-    if (request.desire === "getTranslations") {
+        
+    }else if (request.desire === "getTranslations") {
         translations.desire = "inputTranslation"
-        sendResponse(translations)
+        translations = desire.translations;
     }
 
-    if (request.stateOfBot === undefined) {
+    if (request.active === undefined) {
 
-    } else if (request.stateOfBot === "run") {
+    } else if (request.active === true) {
+
+        // Input all parameter 
+
+        var errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
+        var iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
+
+
+        if (!(errorsPerRun >= 0)) {
+             errorsPerRun = 3;
+        }
+        
+        if (!(iloscPowtorzen > 0)) {
+             iloscPowtorzen = 50;
+        }
+
         TheLoopInterval;
-    } else if (request.stateOfBot === "stop") {
+        console.log("Startd bot")
+    } else if (request.active === false) {
         stopTheLoop(TheLoopInterval);
+        console.log("Stoped bot")
     }
 
 

@@ -8,7 +8,7 @@
                 "<all_urls>"
             ],
             "js": [
-                "content.js"
+                "script.js"
             ]
         }
     ],

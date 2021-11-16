@@ -203,6 +203,7 @@ var firstLoop = true;
 
 var TheLoopInterval = setInterval(() => {
     if (firstLoop) {
+        firstLoop = false;
         stopTheLoop();
     }
 

@@ -6,7 +6,6 @@
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-
 var translations = inputTranslations();
 var newWrods = [];
 var numbOfNewW = 0;
@@ -25,6 +24,8 @@ if (!(iloscPowtorzen > 0)) {
 }
 
 // main loop
+
+
 
 function doIt(isError = false) {
 
@@ -45,7 +46,26 @@ function doIt(isError = false) {
     var continueSesionBtn = document.querySelector("#continue_session_button");
     var startSesion = document.querySelector("#start_session_page");
     var startSesionBtn = document.querySelector("#start_session_button");
+    const btn = document.querySelector("#check");
+    var word = document.querySelector("#word").innerHTML;
+    var speaker = document.querySelector(".speaker");
 
+
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+
+    //              Check all elements
+
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    if (newWord == undefined) {
+        consol.error("Błąd pobierania elementu")
+        return;
+    }
+    if (toTranslate == undefined) {
+        consol.error("Błąd pobierania elementu")
+        return;
+    }
 
 
     ///////////////////////////////////////////////////
@@ -58,20 +78,20 @@ function doIt(isError = false) {
 
 
 
-    if (sesresult.innerHTML != "") {
+    if (continueSesion.style.display != "none") {
+        console.log("Continue sesion page")
+        continueSesionBtn.click();
+        return;
+    } else if (startSesion.style.display != "none") {
+        console.log("Start sesion page")
+        startSesionBtn.click();
+        return;
+    } else if (sesresult.innerHTML != "") {
         console.error("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
         stopTheLoop();
         return;
-    }
-
-    const btn = document.querySelector("#check");
-    var word = document.querySelector("#word").innerHTML;
-    var speaker = document.querySelector(".speaker");
-
-    // Sprawdź czy jest strona new word
-
-    if (newWord.style.display != "none") {
-
+    } else if (newWord.style.display != "none") {
+        // Sprawdź czy jest strona new word
         console.log("Pomijam słówko");
         document.querySelector("#dont_know_new").click();
         setTimeout(() => {
@@ -80,8 +100,6 @@ function doIt(isError = false) {
         }, 1000);
         return;
     }
-
-
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
@@ -164,13 +182,10 @@ function doIt(isError = false) {
                 }, delay);
             }
         }
-
-
     } else {
         console.error("Coś tu się odkurwiło !? XDDD");
     }
 }
-
 
 
 ///////////////////////////////////////////////////
@@ -183,11 +198,14 @@ function doIt(isError = false) {
 
 var firstLoop = true;
 
+// function doTheLoop() {
+
+
 var TheLoopInterval = setInterval(() => {
-    if(firstLoop){
+    if (firstLoop) {
         stopTheLoop();
     }
-    
+
     if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
 
         // if (powt < iloscPowtorzen) {
@@ -205,9 +223,10 @@ var TheLoopInterval = setInterval(() => {
         stopTheLoop();
     }
 
-firstLoop = false;
+    firstLoop = false;
 }, 11000);
 
+// }
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
 
 
@@ -362,8 +381,8 @@ chrome.runtime.onMessage.addListener(gotMesssage);
 function gotMesssage(request, sender, sendResponse) {
 
     if (request.desire === undefined) {
-        
-    }else if (request.desire === "getTranslations") {
+
+    } else if (request.desire === "getTranslations") {
         translations.desire = "inputTranslation"
         translations = desire.translations;
     }
@@ -373,18 +392,11 @@ function gotMesssage(request, sender, sendResponse) {
     } else if (request.active === true) {
 
         // Input all parameter 
-
-        var errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
-        var iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
-
-
-        if (!(errorsPerRun >= 0)) {
-             errorsPerRun = 3;
+        if (errorsPerRun === undefined) {
+            var errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
+            var iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
         }
-        
-        if (!(iloscPowtorzen > 0)) {
-             iloscPowtorzen = 50;
-        }
+
 
         TheLoopInterval;
         console.log("Startd bot")

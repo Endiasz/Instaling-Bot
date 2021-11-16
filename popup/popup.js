@@ -4,6 +4,8 @@ const loopStart = document.querySelector(".startBot");
 const loopStop = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs")
 
+
+
 var words =
     { "rękawica": "der Handschuh", "miejsce zamieszkania": "der Wohnort", "skarpetka": "die Socke", "kapelusz": "der Hut", "nazwisko": "der Familienname", "miejsce urodzenia": "der Geburtsort", "krawat": "die Krawatte", "wiek": "das Alter", "żonaty, zamężna": "verheiratet", "pasek": "der Gürtel", "kurtka, marynarka, żakiet": "die Jacke", "płeć": "das Geschlecht", "koszula": "das Hemd", "nieżonaty, niezamężna": "ledig", "garnitur": "der Anzug", "spodnie": "die Hose", "czapka": "die Mütze", "imię": "der Vorname", "data urodzenia": "das Geburtsdatum", "zawód (profesja)": "der Beruf", "Morze Śródziemne": "das Mittelmeer", "góry": "das Gebirge", "Morze Bałtyckie": "die Ostsee" }
 

@@ -39,6 +39,7 @@ p {
 .element {
     padding: 5px;
     border: 2px solid blue;
+    background-color: rgb(250, 205, 153);
     border-radius: 5px;
     margin: .3rem;
     min-height: 1.3rem;

@@ -10,7 +10,9 @@ const container = document.querySelector(".container")
 const showWords = document.querySelector(".showTranslations");
 const loopStart = document.querySelector(".startBot");
 const loopStop = document.querySelector(".stopBot");
-const logElement = document.querySelector(".logs")
+const logElement = document.querySelector(".logs");
+const addWordsBtn = document.querySelector(".addTranslations");
+const deleteWordsBtn = document.querySelector(".deleteTranslations");
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -20,19 +22,17 @@ const logElement = document.querySelector(".logs")
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
+if (localStorage.haveTranslations === undefined) {
+    saveTranslations(inputTranslations());
+    // localStorage = inputTranslations();
+}
+
 if (words === undefined) {
     var words = {}
     getWords()
 }
-if (words === {}) {
-    // dodaj tłumaczenia
-    console.log("dodaj tłumacznenia")
-    words = inputTranslations();
-}
 
-if (localStorage = {}) {
-    //saveTranslations(words)
-}
+
 
 
 
@@ -44,9 +44,9 @@ if (localStorage = {}) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-function getWords() {
+function getWords() { // to internal varrible witchout any retardet
     for (ele in localStorage) {
-        if (typeof (localStorage[ele]) !== typeof ({})) {
+        if (typeof (localStorage[ele]) !== typeof (() => { })) {
             words[ele] = localStorage[ele];
         }
     }
@@ -55,17 +55,20 @@ function getWords() {
 function saveTranslations(trans) {
     for (ele in trans) {
         localStorage[ele] = trans[ele]
-
     }
 }
 // saveTranslations(words)
 
 function inputTranslations() {
     var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "");
-    if (translationsToAssing != '') {
+    if (translationsToAssing != "") {
         translations = JSON.parse(translationsToAssing);
+        translations.haveTranslations = true;
+        logElement.innerHTML += "Dodałeś słówka<br>";
         return translations;
     } else {
+        console.log("Nic nie podałeś");
+        logElement.innerHTML += "Nie podaleś żadnych słówek<br>";
         return {};
     }
 }
@@ -77,6 +80,7 @@ function inputTranslations() {
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
+
 var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
@@ -109,11 +113,11 @@ function gotMesssage(message, sender, sendResponse) {
     }
 }
 
+
 loopStart.addEventListener('click', btnStart)
 function btnStart() {
 
-    console.log("Start bot");
-    logElement.innerHTML += "Start bot<br>";
+    // console.log("Start bot");
 
     chrome.tabs.query({}, gotTabs)
     function gotTabs(tabs) {
@@ -124,6 +128,7 @@ function btnStart() {
                 var foundInstsaling = true;
 
                 // At this point there is found tab and ready to use as tabOfInstaling (Object)
+                logElement.innerHTML += "Start bot<br>";
 
                 let msg = {
                     active: true,
@@ -134,8 +139,8 @@ function btnStart() {
         }
 
         if (foundInstsaling != true) {
-            console.log("Something wrong");
-            logElement.innerHTML += "Something wrong<br>";
+            // console.log("Something wrong");
+            logElement.innerHTML += "Something wrong no instaling<br>";
             return;
         }
     }
@@ -144,8 +149,6 @@ function btnStart() {
 loopStop.addEventListener('click', btnStop)
 function btnStop() {
 
-    console.log("Stop bot");
-    logElement.innerHTML += "Stop bot<br>";
 
     chrome.tabs.query({}, gotTabs)
     function gotTabs(tabs) {
@@ -157,7 +160,8 @@ function btnStop() {
 
                 // At this point there is found tab and ready to use as tabOfInstaling (Object)
 
-                console.log(tabOfInstaling);
+                logElement.innerHTML += "Stop bot<br>";
+                // console.log(tabOfInstaling);
 
                 let msg = { active: false }
                 chrome.tabs.sendMessage(tabOfInstaling.id, msg)
@@ -166,8 +170,18 @@ function btnStop() {
 
         if (foundInstsaling != true) {
             console.log("Something wrong");
-            logElement.innerHTML += "Something wrong<br>";
+            logElement.innerHTML += "Something wrong no instaling<br>";
             return;
         }
     }
+}
+
+addWordsBtn.addEventListener('click', btnAddWords);
+function btnAddWords() {
+    saveTranslations(inputTranslations());
+}
+
+deleteWordsBtn.addEventListener('click', btnDeleteWords);
+function btnDeleteWords() {
+    localStorage.clear();
 }

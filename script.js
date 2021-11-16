@@ -12,16 +12,16 @@ var numbOfNewW = 0;
 var powt = 0;
 
 // laod bellow
-var errorsPerRun = 3;
-var iloscPowtorzen = 50;
+var errorsPerRun = -1;
+var iloscPowtorzen = -1;
 
-if (!(errorsPerRun >= 0)) {
-    var errorsPerRun = 3;
-}
+// if (!(errorsPerRun >= 0)) {
+//     var errorsPerRun = 3;
+// }
 
-if (!(iloscPowtorzen > 0)) {
-    var iloscPowtorzen = 50;
-}
+// if (!(iloscPowtorzen > 0)) {
+//     var iloscPowtorzen = 50;
+// }
 
 // main loop
 
@@ -87,7 +87,7 @@ function doIt(isError = false) {
         startSesionBtn.click();
         return;
     } else if (sesresult.innerHTML != "") {
-        console.error("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
+        console.log("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
         stopTheLoop();
         return;
     } else if (newWord.style.display != "none") {
@@ -188,6 +188,10 @@ function doIt(isError = false) {
 }
 
 
+
+
+
+
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
@@ -198,39 +202,29 @@ function doIt(isError = false) {
 
 var firstLoop = true;
 
-// function doTheLoop() {
+// wywołanie
+// TheLoopInterval = setInterval(theLoopFunction, 11000)
 
 
-var TheLoopInterval = setInterval(() => {
+var TheLoopInterval = setInterval(theLoopFunction(), 11000);
+function theLoopFunction() {
     if (firstLoop) {
         firstLoop = false;
         stopTheLoop();
-    }
-
-    if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
-
-        // if (powt < iloscPowtorzen) {
+    } else if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
         doIt(true); // wykonaj wszystko
         powt++
     } else if (powt < iloscPowtorzen) {
 
-        // if (powt < iloscPowtorzen) {
         doIt(); // wykonaj wszystko
         powt++
     }
     else {
-
         console.log("Zrobiłem powtóżenia");
         stopTheLoop();
     }
-
-    firstLoop = false;
-}, 11000);
-
-// }
+}
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
-
-
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -392,15 +386,16 @@ function gotMesssage(request, sender, sendResponse) {
 
     } else if (request.active === true) {
 
-        // Input all parameter 
-        if (errorsPerRun === undefined) {
-            var errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
-            var iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
+        // Input all parameter if needed
+        if (errorsPerRun === -1 && iloscPowtorzen === -1) {
+            errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
+            iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
         }
 
-
-        TheLoopInterval;
+        clearInterval(TheLoopInterval);
+        var TheLoopInterval = setInterval(theLoopFunction, 11000)
         console.log("Startd bot")
+
     } else if (request.active === false) {
         stopTheLoop(TheLoopInterval);
         console.log("Stoped bot")

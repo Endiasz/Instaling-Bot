@@ -377,9 +377,9 @@ function gotMesssage(request, sender, sendResponse) {
 
     if (request.desire === undefined) {
 
-    } else if (request.desire === "getTranslations") {
-        translations.desire = "inputTranslation"
-        translations = desire.translations;
+    } else if (request.translations !== undefined) {
+        console.log("Got translations from popup")
+        translations = request.translations;
     }
 
     if (request.active === undefined) {

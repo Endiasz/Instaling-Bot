@@ -1,21 +1,86 @@
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+//              Declarate all varibles
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
 const container = document.querySelector(".container")
 const showWords = document.querySelector(".showTranslations");
 const loopStart = document.querySelector(".startBot");
 const loopStop = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs")
 
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+//              Basic logic
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+if (words === undefined) {
+    var words = {}
+    getWords()
+}
+if (words === {}) {
+    // dodaj tłumaczenia
+    console.log("dodaj tłumacznenia")
+    words = inputTranslations();
+}
+
+if (localStorage = {}) {
+    //saveTranslations(words)
+}
 
 
-var words =
-    { "rękawica": "der Handschuh", "miejsce zamieszkania": "der Wohnort", "skarpetka": "die Socke", "kapelusz": "der Hut", "nazwisko": "der Familienname", "miejsce urodzenia": "der Geburtsort", "krawat": "die Krawatte", "wiek": "das Alter", "żonaty, zamężna": "verheiratet", "pasek": "der Gürtel", "kurtka, marynarka, żakiet": "die Jacke", "płeć": "das Geschlecht", "koszula": "das Hemd", "nieżonaty, niezamężna": "ledig", "garnitur": "der Anzug", "spodnie": "die Hose", "czapka": "die Mütze", "imię": "der Vorname", "data urodzenia": "das Geburtsdatum", "zawód (profesja)": "der Beruf", "Morze Śródziemne": "das Mittelmeer", "góry": "das Gebirge", "Morze Bałtyckie": "die Ostsee" }
 
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
 
-var clicked = false;
+//              Different usefull functions
 
-// clicked button to show words
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+function getWords() {
+    for (ele in localStorage) {
+        if (typeof (localStorage[ele]) !== typeof ({})) {
+            words[ele] = localStorage[ele];
+        }
+    }
+}
+
+function saveTranslations(trans) {
+    for (ele in trans) {
+        localStorage[ele] = trans[ele]
+
+    }
+}
+// saveTranslations(words)
+
+function inputTranslations() {
+    var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "");
+    if (translationsToAssing != '') {
+        translations = JSON.parse(translationsToAssing);
+        return translations;
+    } else {
+        return {};
+    }
+}
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+//              Main logic
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
-    if (!clicked) {
+    if (!isShowingWords) {
 
         for (var ele in words) {
             var val = words[ele];
@@ -30,35 +95,19 @@ showWords.addEventListener("click", () => {
         for (var i = 0; i < childs.length; i++) {
             container.removeChild(childs[i]);
         }
-
     }
-    clicked = !clicked;
-
+    isShowingWords = !isShowingWords;
 })
-
-
-function saveTranslations(trans) {
-    for (ele in trans) {
-        var val = trans[ele];
-        localStorage.setItem(ele, val);
-    }
-}
-
-saveTranslations(words)
-
 
 chrome.runtime.onMessage.addListener(gotMesssage);
 
 function gotMesssage(message, sender, sendResponse) {
     if (message.desire === undefined) {
-        console.log("Mam wiadomość ale bez przeznaczenia")
     }
     if (message.isTranslaation == "inputTranslation") {
-        message.translations = sendResponse;
+        // message.translations = sendResponse;
     }
 }
-
-
 
 loopStart.addEventListener('click', btnStart)
 function btnStart() {
@@ -76,7 +125,10 @@ function btnStart() {
 
                 // At this point there is found tab and ready to use as tabOfInstaling (Object)
 
-                let msg = { active: true }
+                let msg = {
+                    active: true,
+                    sendWords: translations
+                }
                 chrome.tabs.sendMessage(tabOfInstaling.id, msg)
             }
         }
@@ -88,8 +140,6 @@ function btnStart() {
         }
     }
 }
-
-
 
 loopStop.addEventListener('click', btnStop)
 function btnStop() {

@@ -25,7 +25,7 @@ Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako t
 Usuń słowa - <br>
 Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 
-* Na stronie końcowej pokażeą się nam nowe słowa, jest tam opisane jakie to słowa 
+* Na stronie końcowej pokażą się nam nowe słowa. Wszystko jest tam opisane
 
 # Lista to do 
 * przerobiś system ile błędów na powtorzenia 

@@ -318,7 +318,9 @@ function generateString(txtToLenght) {
     for (var i = 0; i < (txtToLenght.length + Math.random() * 5 + -3); i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    return result;
+    // return result;
+
+    return toTranslate;
 }
 
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON

@@ -9,7 +9,7 @@ Po załadowaniu pojawi się ikonka rozszeżenia na paski za jej pomocą można k
 * Jestem prawie pewien że bot powinien działać z każdym językiem.
 Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słówka.txt) polecam go gdzieś zapisać, za pierwszym razem jak odpalimy rozszeżenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy(bot sam zbiera tłumaczenie i można je sobie samemu zapisać gdzieś to opiszę).
 
-* Jak wszystko pykło(oby) to klikamy po prostu start bot ( * ważne jest żeby mieć odpaloną stronę instalinga na zadaniach), jak  
+* Jak wszystko pykło(oby) to klikamy po prostu start bot ( <b> ważne jest żeby mieć odpaloną stronę instalinga na zadaniach</b>), jak  
 
 # Opis funkcij
 

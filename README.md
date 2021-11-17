@@ -15,8 +15,8 @@ Bot sam zacznie robić zadania. Pierwsze przejśćię przez wszyskie słówka za
 Gdy bot skończy sam się zatrzyma i teraz możemy pobrać tłumaczenia które ma ( Opisane na dole jak to zrobić ).
 
 # Opis funkcij
-Nie wszysko może działać ale te najważniejsze powinny
-* (Bot sobie sam zapisuje wszyskie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem)
+Nie wszysko może działać ale te najważniejsze opcje powinny
+* <i>Bot sobie sam zapisuje wszyskie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem</i>
 
 * Funkcje z okienka PopUp
 Start bot - Start

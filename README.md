@@ -20,8 +20,8 @@ Nie wszysko może działać ale te najważniejsze opcje powinny
 * <b>Bot sobie sam zapisuje wszyskie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem</b>
 
 * Funkcje z okienka PopUp <br><br>
-Start bot - Start <br>
-Stop bot - Stop<br>
+Start bot - Start bota. Przy starcie pokaże się nam okienko do wpisania wartości ile błędow ma być i ile razy powtórzać zadanie polecam tego akurat nie ruszać<br>
+Stop bot - Stop bota<br>
 Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia) Jeżeli nie mamy tłumaczeń to po prostu klikamy ok bo inaczej coś może się spierdzielić<br>
 Usuń słowa - Usuwa słowa z pamięci lokalnej bota <br>
 Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>

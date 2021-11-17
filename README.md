@@ -26,3 +26,6 @@ Usuń słowa - <br>
 Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 
 * Na stronie końcowej pokażeą się nam nowe słowa, jest tam opisane jakie to słowa 
+
+# Lista to do 
+* przerobiś system ile błędów na powtorzenia 

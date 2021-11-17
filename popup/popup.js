@@ -121,7 +121,6 @@ function btnStart() {
 
     chrome.tabs.query({}, gotTabs)
     function gotTabs(tabs) {
-
         for (ele in tabs) {
             if (tabs[ele].url.indexOf("https://instaling.pl/ling2/html_app/") != -1) {
                 var tabOfInstaling = tabs[ele];
@@ -132,7 +131,7 @@ function btnStart() {
 
                 let msg = {
                     active: true,
-                    sendWords: translations
+                    sendWords: words
                 }
                 chrome.tabs.sendMessage(tabOfInstaling.id, msg)
             }

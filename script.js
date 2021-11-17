@@ -383,7 +383,7 @@ function gotMesssage(request, sender, sendResponse) {
         // Input all parameter if needed
         if (errorsPerRun === -1 && iloscPowtorzen === -1) {
             errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
-            iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 50));
+            iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 100));
         }
 
         clearInterval(TheLoopInterval);

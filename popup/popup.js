@@ -149,7 +149,7 @@ loopStop.addEventListener('click', btnStop)
 function btnStop() {
 
 
-    chrome.tabs.query({}, gotTabs)
+    chrome.tabs.query({ currentWindow: true }, gotTabs)
     function gotTabs(tabs) {
 
         for (ele in tabs) {

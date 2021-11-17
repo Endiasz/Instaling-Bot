@@ -27,7 +27,6 @@ var iloscPowtorzen = -1;
 // main loop
 
 
-
 function doIt(isError = false) {
 
     ///////////////////////////////////////////////////
@@ -89,6 +88,7 @@ function doIt(isError = false) {
         return;
     } else if (sesresult.innerHTML != "") {
         console.log("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
+        endForToday(translations);
         stopTheLoop();
         return;
     } else if (newWord.style.display != "none") {

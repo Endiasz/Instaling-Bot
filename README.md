@@ -15,6 +15,7 @@ Bot sam zacznie robić zadania. Pierwsze przejśćię przez wszyskie słówka za
 Gdy bot skończy sam się zatrzyma i teraz możemy pobrać tłumaczenia które ma ( Opisane na dole jak to zrobić ).
 
 # Opis funkcij
+Polecam wyciśzyć kartę instalingu :D<br>
 Nie wszysko może działać ale te najważniejsze opcje powinny
 * <b>Bot sobie sam zapisuje wszyskie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem</b>
 

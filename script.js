@@ -322,8 +322,15 @@ function generateString(txtToLenght) {
 }
 
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
+    if (newWrods !== {}) {
+        document.querySelector("session_result > p").innerHTML = "<p>Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
+        document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
+    } else {
+        document.querySelector("session_result > p").innerHTML = "<p>Brak nowych słówek </p>"
+        document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
+    }
     console.log(JSON.stringify(translations));
-    alert("Masz chwilę na skopiowanie słownika z konsoli");
+    //alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 
 function stopTheLoop() {
@@ -390,4 +397,6 @@ function gotMesssage(request, sender, sendResponse) {
 
 
 }
+
+
 

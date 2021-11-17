@@ -24,3 +24,5 @@ Stop bot - Stop<br>
 Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia)<br>
 Usuń słowa - <br>
 Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
+
+* Na stronie końcowej pokażeą się nam nowe słowa, jest tam opisane jakie to słowa 

@@ -46,7 +46,6 @@ function doIt(isError = false) {
     var continueSesionBtn = document.querySelector("#continue_session_button");
     var startSesion = document.querySelector("#start_session_page");
     var startSesionBtn = document.querySelector("#start_session_button");
-    const btn = document.querySelector("#check");
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector(".speaker");
 
@@ -118,7 +117,7 @@ function doIt(isError = false) {
             console.log("Znam słowo");
 
             setTimeout(() => {
-                const btn2 = document.querySelector("#nextword");
+                var btn2 = document.querySelector("#nextword");
                 // console.log("nextword");
                 btn2.click()
             }, Math.random() * 1000 + 2000);
@@ -133,7 +132,7 @@ function doIt(isError = false) {
             console.log("Nowe słówko");
 
             setTimeout(() => {
-                const btn2 = document.querySelector("#nextword");
+                var btn2 = document.querySelector("#nextword");
                 // console.log("nextword");
                 btn2.click();
             }, Math.random() * 1000 + 2000);
@@ -151,7 +150,7 @@ function doIt(isError = false) {
             answer.value = temp;
             answer.placeholder = temp;
             setTimeout(() => {
-                const btn1 = document.querySelector("#check");
+                var btn1 = document.querySelector("#check");
                 btn1.click()
             }, delay);
             return;
@@ -251,9 +250,9 @@ function answearLearn(word, toTranslate, translations) {  // jeżeli nie znasz n
                 return translations;
             }
         }
-        else console.error("Błąd (pozyskania słowa PL)");
+        else console.error("Błąd ( pozyskania słowa PL )");
     } else
-        console.error("Błąd (pozyskania słowa DE)");
+        console.error("Błąd ( pozyskania słowa DE )");
 
     return translations;
 }
@@ -268,14 +267,14 @@ function chcechForAnswear(toTranslate, translations) { //poszukaj odpowiednego s
                 var value = translations[key];
 
                 if (key == toTranslate) {
-                    console.log("I got it boyyy");
+                    console.log("Uzupełniam słowo");
                     return value;
                 }
             }
 
             if (isDone == false) {
                 //answearLern(toTranslate, translations)
-                console.error("Nieznane słowo a powinienem je zanc 😮");
+                console.error("Nieznane słowo a powinienem je zanć 😮");
             }
         } else console.error("chcechForAnswear (toTranslate undefined)");
     } else console.error("chcechForAnswear (translations undefined)");

@@ -6,7 +6,8 @@
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-var translations = inputTranslations();
+// var translations = inputTranslations();
+var translations = {};
 var newWrods = [];
 var numbOfNewW = 0;
 var powt = 0;

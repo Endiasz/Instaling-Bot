@@ -21,8 +21,8 @@ Nie wszysko może działać ale te najważniejsze opcje powinny
 * Funkcje z okienka PopUp <br><br>
 Start bot - Start <br>
 Stop bot - Stop<br>
-Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia)<br>
-Usuń słowa - <br>
+Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia) Jeżeli nie mamy tłumaczeń to po prostu klikamy ok bo inaczej coś może się spierdzielić<br>
+Usuń słowa - Usuwa słowa z pamięci lokalnej bota <br>
 Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 
 * Na stronie końcowej pokażą się nam nowe słowa. Wszystko jest tam opisane

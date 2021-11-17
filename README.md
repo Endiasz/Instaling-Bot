@@ -19,8 +19,8 @@ Nie wszysko może działać ale te najważniejsze opcje powinny
 * <b>Bot sobie sam zapisuje wszyskie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem</b>
 
 * Funkcje z okienka PopUp
-Start bot - Start
-Stop bot - Stop
-Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia)
-Usuń słowa - 
-Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci 
+Start bot - Start <br>
+Stop bot - Stop<br>
+Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia)<br>
+Usuń słowa - <br>
+Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>

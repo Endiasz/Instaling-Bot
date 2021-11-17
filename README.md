@@ -7,7 +7,7 @@ Bot do popularnej strony instaling sam robi zadania za ciebie
 Po załadowaniu pojawi się ikonka rozszeżenia na paski za jej pomocą można kontrolować bota, narazie to jest troche jeszcze prymitywne ale będę próbował to poprawić.
 
 * Jestem prawie pewien że bot powinien działać z każdym językiem.
-Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słówka.txt) polecam go gdzieś zapisać, za pierwszym razem jak odpalimy rozszeżenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy(bot sam zbiera tłumaczenie i można je sobie samemu zapisać gdzieś to opiszę).
+Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słowka(JSON).txt) polecam swój plik gdzieś zapisać, za pierwszym razem jak odpalimy rozszeżenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy ( bot sam zbiera tłumaczenie i można je sobie samemu zapisać gdzieś to opiszę ).
 
 * Jak wszystko pykło(mam nadzieję ,że pyknie) to klikamy po prostu start bot ( <b>____Ważne jest żeby mieć odpaloną stronę instalinga na zadaniach____</b>).
 
@@ -16,5 +16,11 @@ Gdy bot skończy sam się zatrzyma i teraz możemy pobrać tłumaczenia które m
 
 # Opis funkcij
 Nie wszysko może działać ale te najważniejsze powinny
+* (Bot sobie sam zapisuje wszyskie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem)
 
-* 
+* Funkcje z okienka PopUp
+Start bot - Start
+Stop bot - Stop
+Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia)
+Usuń słowa - 
+Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci 

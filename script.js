@@ -206,7 +206,7 @@ var firstLoop = true;
 // TheLoopInterval = setInterval(theLoopFunction, 11000)
 
 
-var TheLoopInterval = setInterval(theLoopFunction(), 11000);
+var TheLoopInterval = setInterval(theLoopFunction(), 5000);
 function theLoopFunction() {
     if (firstLoop) {
         firstLoop = false;
@@ -321,20 +321,6 @@ function generateString(txtToLenght) {
     return result;
 }
 
-function generateString(txtToLenght) {
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    var result = "";
-    if (txtToLenght < 3) {
-        txtToLenght = 5;
-    }
-
-    for (var i = 0; i < (txtToLenght.length + Math.random() * 5 + -3); i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
-
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     console.log(JSON.stringify(translations));
     alert("Masz chwilę na skopiowanie słownika z konsoli");
@@ -359,13 +345,13 @@ function countDelay(toTranslate) {
     }
 
     if (count < 6)
-        return Math.round(Math.random() * 2000 + 3000);
+        return Math.round(Math.random() * 2000 + 5000);
     else if (count < 10)
-        return Math.round(Math.random() * 2000 + 6000);
+        return Math.round(Math.random() * 2000 + 5000);
     else if (count < 15)
-        return Math.round(Math.random() * 2000 + 7000);
+        return Math.round(Math.random() * 2000 + 5000);
     else
-        return Math.round(Math.random() * 2000 + 8000);
+        return Math.round(Math.random() * 2000 + 5000);
 
 }
 
@@ -393,7 +379,8 @@ function gotMesssage(request, sender, sendResponse) {
         }
 
         clearInterval(TheLoopInterval);
-        var TheLoopInterval = setInterval(theLoopFunction, 11000)
+        translations = request.sendWords;
+        TheLoopInterval = setInterval(theLoopFunction, 11000)
         console.log("Startd bot")
 
     } else if (request.active === false) {

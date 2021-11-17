@@ -24,5 +24,6 @@
         "default_icon": "img/logo.png",
         "default_popup": "popup/popup.html",
         "default_title": "He he"
-    }
+    },
+    "author": "Endiasz"
 }

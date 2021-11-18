@@ -109,6 +109,7 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
+
     if (speaker.style.display != "none") { // Answear page
 
         if (checkTranslations(toTranslate, translations)) {  // Knowed Word
@@ -130,22 +131,21 @@ function doIt(isError = false) {
             newWrods[toTranslate] = word;
             numbOfNewW++;
             console.log("Nowe słówko");
-
             setTimeout(() => {
                 var btn2 = document.querySelector("#nextword");
                 // console.log("nextword");
                 btn2.click();
             }, Math.random() * 1000 + 2000);
-
         }
-
+        return;
     } else if (speaker.style.display == "none") { // Question page
 
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
             errorsPerRun--;
             console.log("Intencjonalny błąd")
 
-            var temp = generateString(toTranslate);
+            // var temp = generateString(toTranslate);
+            var temp = makeMistake(toTranslate, true);
 
             answer.value = temp;
             answer.placeholder = temp;
@@ -153,26 +153,28 @@ function doIt(isError = false) {
                 var btn1 = document.querySelector("#check");
                 btn1.click()
             }, delay);
-            return;
 
         } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
 
             var temp = chcechForAnswear(toTranslate, translations);
-
             answer.value = temp;
             answer.placeholder = temp;
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
                 btn1.click()
             }, delay);
+            return;
         } else {
             // console.log("Question page");
 
             if (checkTranslations(toTranslate, translations)) {
 
             } else {
-                console.log("randomowy string");
-                answer.value = generateString(toTranslate);
+                // console.log("randomowy string");
+                // nie znam słowa
+                console.log("Coś wklepię");
+
+                answer.value = makeMistake(toTranslate, false);
                 answer.placeholder = answer.value;
 
                 setTimeout(() => {
@@ -181,6 +183,7 @@ function doIt(isError = false) {
                     btn1.click()
                 }, delay);
             }
+            return;
         }
     } else {
         console.error("Coś tu się odkurwiło !? XDDD");
@@ -323,6 +326,45 @@ function generateString(txtToLenght) {
     return toTranslate;
 }
 
+/*
+
+String.prototype.replaceAt = function(index, charcount) {
+  return this.substr(0, index) + this.substr(index + charcount);
+}
+
+
+xd = "001231312 , asdadasdadasda";
+for(var i = xd.indexOf(",");i < xd.length;i++){
+console.log("The loop ",i)
+xd = xd.replaceAt(xd.indexOf(i,60));
+}
+
+*/
+
+function makeMistake(toTranslate, isIntentional = false) {
+    var toReturn = "";
+    if (isIntentional) {
+        toReturn = chcechForAnswear(toTranslate, translations)
+        toReturn = toReturn.replace(toReturn.length, "");
+        toReturn = toReturn.replace(toReturn.length / 2, "");
+        return toReturn;
+    }
+
+    toReturn = toTranslate;
+    if (toReturn.indexOf(",") != -1) {
+        for (var i = toReturn.indexOf(","); i < toReturn.length; i++) {
+            toReturn = toReturn.replace(i, "");
+        }
+        console.log("Jest przecinek")
+        return toReturn;
+    } else {
+        toReturn = toReturn.replace((toReturn.length - 1), "");
+        toReturn = toReturn.replace(2, "");
+        console.log("Brak przecinka")
+        return toReturn;
+    }
+}
+
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     if (newWrods === {}) {
         document.querySelector("#session_result > p").innerHTML = "<p>Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
@@ -390,7 +432,7 @@ function gotMesssage(request, sender, sendResponse) {
         clearInterval(TheLoopInterval);
         translations = request.sendWords;
         TheLoopInterval = setInterval(theLoopFunction, 11000)
-        console.log("Startd bot")
+        console.log("Started bot")
 
     } else if (request.active === false) {
         stopTheLoop(TheLoopInterval);

@@ -30,3 +30,6 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 
 # Lista to do 
 * przerobiś system ile błędów na powtorzenia 
+
+# In progres
+* generowanie niepoprawnego słowa

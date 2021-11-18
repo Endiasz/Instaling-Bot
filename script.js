@@ -326,40 +326,23 @@ function generateString(txtToLenght) {
     return toTranslate;
 }
 
-/*
-
-String.prototype.replaceAt = function(index, charcount) {
-  return this.substr(0, index) + this.substr(index + charcount);
-}
-
-
-xd = "001231312 , asdadasdadasda";
-for(var i = xd.indexOf(",");i < xd.length;i++){
-console.log("The loop ",i)
-xd = xd.replaceAt(xd.indexOf(i,60));
-}
-
-*/
-
 function makeMistake(toTranslate, isIntentional = false) {
-    var toReturn = "";
-    if (isIntentional) {
-        toReturn = chcechForAnswear(toTranslate, translations)
-        toReturn = toReturn.replace(toReturn.length, "");
-        toReturn = toReturn.replace(toReturn.length / 2, "");
-        return toReturn;
-    }
+        var toReturn = "";
+        if (isIntentional) {
+            toReturn = chcechForAnswear(toTranslate, translations)
+            toReturn = toReturn.slice(0,toReturn.length-3)
+
+            return toReturn;
+        }
+
 
     toReturn = toTranslate;
     if (toReturn.indexOf(",") != -1) {
-        for (var i = toReturn.indexOf(","); i < toReturn.length; i++) {
-            toReturn = toReturn.replace(i, "");
-        }
+        toReturn = toReturn.slice(toReturn.indexOf(",")+1,toReturn.length)
         console.log("Jest przecinek")
         return toReturn;
     } else {
-        toReturn = toReturn.replace((toReturn.length - 1), "");
-        toReturn = toReturn.replace(2, "");
+        toReturn = toReturn.slice(0,toReturn.length-3);
         console.log("Brak przecinka")
         return toReturn;
     }

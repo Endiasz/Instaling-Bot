@@ -1,5 +1,6 @@
 # Instaling Bot
-Bot do popularnej strony instaling sam robi zadania za ciebie
+Bot do popularnej strony instaling sam robi zadania za ciebie<br>
+Raczej nie działa na windows 7
 
 # Jak to ustawić?
 

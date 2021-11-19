@@ -4,9 +4,9 @@ chrome.browserAction.onClicked.addListener(buttonClicked);
 
 var translations;
 
-function buttonClicked(tab) {
-    let msg = {
-        txt: "Hello"
-    }
-    chrome.tabs.sendMessage(tab.id, msg)
-}
+// function buttonClicked(tab) {
+//     let msg = {
+//         txt: "Hello"
+//     }
+//     chrome.tabs.sendMessage(tab.id, msg)
+// }

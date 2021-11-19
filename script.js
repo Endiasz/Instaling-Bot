@@ -327,22 +327,22 @@ function generateString(txtToLenght) {
 }
 
 function makeMistake(toTranslate, isIntentional = false) {
-        var toReturn = "";
-        if (isIntentional) {
-            toReturn = chcechForAnswear(toTranslate, translations)
-            toReturn = toReturn.slice(0,toReturn.length-3)
+    var toReturn = "";
+    if (isIntentional) {
+        toReturn = chcechForAnswear(toTranslate, translations)
+        toReturn = toReturn.slice(0, toReturn.length - 3)
 
-            return toReturn;
-        }
+        return toReturn;
+    }
 
 
     toReturn = toTranslate;
     if (toReturn.indexOf(",") != -1) {
-        toReturn = toReturn.slice(toReturn.indexOf(",")+1,toReturn.length)
+        toReturn = toReturn.slice(toReturn.indexOf(",") + 1, toReturn.length)
         console.log("Jest przecinek")
         return toReturn;
     } else {
-        toReturn = toReturn.slice(0,toReturn.length-3);
+        toReturn = toReturn.slice(0, toReturn.length - 3);
         console.log("Brak przecinka")
         return toReturn;
     }

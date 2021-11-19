@@ -13,6 +13,7 @@ const loopStop = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs");
 const addWordsBtn = document.querySelector(".addTranslations");
 const deleteWordsBtn = document.querySelector(".deleteTranslations");
+var elementList = document.querySelectorAll(".elemetn");
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -84,6 +85,17 @@ function inputTranslations() {
 var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
+    elementList.addEventListener('click', coppyToClibord());
+
+    function coppyToClibord(element) {
+
+        if (element !== undefined) {
+            var copyText = element.innerHTML;
+            //navigator.clipboard.writeText(copyText);
+            //logElement.innerHTML += "Skopiowałem <br>";
+        }
+    }
+
     if (!isShowingWords) {
 
         for (var ele in words) {

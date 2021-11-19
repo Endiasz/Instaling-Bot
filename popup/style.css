@@ -37,6 +37,7 @@ p {
 }
 
 .element {
+    text-align: center;
     padding: 5px;
     border: 2px solid blue;
     background-color: rgb(250, 205, 153);
@@ -45,6 +46,11 @@ p {
     min-height: 1.3rem;
     width: 100%;
     line-break: none;
+}
+
+.element:hover {
+    background-color: rgb(216, 201, 185);
+    font-size: 17px;
 }
 
 .logs {

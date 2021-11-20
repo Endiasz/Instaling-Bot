@@ -45,6 +45,14 @@ if (words === undefined) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
+function coppyToClibord(element) {
+    if (element !== undefined) {
+        var copyText = element.innerHTML;
+        logElement.innerHTML += "Skopiowałem <br>";
+        navigator.clipboard.writeText(copyText);
+    }
+}
+
 function getWords() { // to internal varrible witchout any retardet
     for (ele in localStorage) {
         if (typeof (localStorage[ele]) !== typeof (() => { })) {
@@ -85,14 +93,10 @@ function inputTranslations() {
 var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
-    elementList.addEventListener('click', coppyToClibord());
 
-    function coppyToClibord(element) {
-
-        if (element !== undefined) {
-            var copyText = element.innerHTML;
-            //navigator.clipboard.writeText(copyText);
-            //logElement.innerHTML += "Skopiowałem <br>";
+    if (element !== undefined) {
+        for (ele in elementList) {
+            elementList.addEventListener('click', coppyToClibord());
         }
     }
 

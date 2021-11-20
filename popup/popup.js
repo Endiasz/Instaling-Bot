@@ -96,7 +96,7 @@ showWords.addEventListener("click", () => {
 
     if (element !== undefined) {
         for (ele in elementList) {
-            elementList.addEventListener('click', coppyToClibord());
+            elementList.addEventListener('click', coppyToClibord(elementList[ele]));
         }
     }
 

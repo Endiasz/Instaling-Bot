@@ -45,8 +45,8 @@ if (words === undefined) {
 ///////////////////////////////////////////////////
 
 function coppyToClibord(element) {
-    if (element !== undefined) {
-        var copyText = element;
+    if (element.innerHTML !== undefined) {
+        var copyText = element.innerHTML;
         //navigator.clipboard.writeText(copyText);
         logElement.innerHTML += "Skopiowałem <br>";
     }
@@ -100,6 +100,7 @@ showWords.addEventListener("click", () => {
             // console.log(ele, "\tto\t", val);
             const newDiv = document.createElement("div");
             newDiv.classList.add("element");
+            newDiv.setAttribute("onclick", '"coppyToClibord()');
             container.appendChild(newDiv);
             newDiv.innerHTML = val + "\t:\t" + ele;
         }
@@ -114,7 +115,7 @@ showWords.addEventListener("click", () => {
         var elementList = document.querySelectorAll("div.container.words > div");
         for (ele in elementList) {
             if (elementList[ele].innerHTML !== undefined && elementList[ele].innerHTML !== null) {
-                elementList[ele].addEventListener('click', coppyToClibord(elementList[ele].innerHTML));
+                elementList[ele].addEventListener('click', coppyToClibord(elementList[ele]));
             }
         }
     }

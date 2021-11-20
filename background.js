@@ -1,12 +1,17 @@
-console.log("Baclground is working xD")
+// console.log("Baclground is working xD")
 
-chrome.browserAction.onClicked.addListener(buttonClicked);
+// chrome.browserAction.onClicked.addListener(buttonClicked);
 
-var translations;
+// var translations;
 
-function buttonClicked(tab) {
-    let msg = {
-        txt: "Hello"
-    }
-    chrome.tabs.sendMessage(tab.id, msg)
-}
+// function buttonClicked(tab) {
+//     let msg = {
+//         txt: "Hello"
+//     }
+//     chrome.tabs.sendMessage(tab.id, msg)
+// }
+
+
+
+
+// W sumie nie wiem po co mi to

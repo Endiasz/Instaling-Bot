@@ -16,14 +16,6 @@ var powt = 0;
 var errorsPerRun = -1;
 var iloscPowtorzen = -1;
 
-// if (!(errorsPerRun >= 0)) {
-//     var errorsPerRun = 3;
-// }
-
-// if (!(iloscPowtorzen > 0)) {
-//     var iloscPowtorzen = 50;
-// }
-
 // main loop
 
 
@@ -47,8 +39,7 @@ function doIt(isError = false) {
     var startSesion = document.querySelector("#start_session_page");
     var startSesionBtn = document.querySelector("#start_session_button");
     var word = document.querySelector("#word").innerHTML;
-    var speaker = document.querySelector(".speaker");
-
+    var speaker = document.querySelector("#answer_page");
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
@@ -110,7 +101,7 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
 
 
-    if (speaker.style.display != "none") { // Answear page
+    if (speaker.style.display == "none") { // Answear page
 
         if (checkTranslations(toTranslate, translations)) {  // Knowed Word
             // console.log("Answear page");
@@ -138,7 +129,7 @@ function doIt(isError = false) {
             }, Math.random() * 1000 + 2000);
         }
         return;
-    } else if (speaker.style.display == "none") { // Question page
+    } else if (speaker.style.display != "none") { // Question page
 
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
             errorsPerRun--;

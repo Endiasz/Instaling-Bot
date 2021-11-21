@@ -109,7 +109,7 @@ function doIt(isError = false) {
                 var btn2 = document.querySelector("#nextword");
                 // console.log("nextword");
                 btn2.click()
-            }, Math.random() * 1000 + 2000);
+            }, 2000);
 
         } else {   // Unknowed Word, learn
             translations = answearLearn(word, toTranslate, translations);
@@ -120,7 +120,7 @@ function doIt(isError = false) {
                 var btn2 = document.querySelector("#nextword");
                 // console.log("nextword");
                 btn2.click();
-            }, Math.random() * 1000 + 2000);
+            }, 2000);
         }
     } else if (speaker.style.display == "none") { // Question page
         console.log("Question page");
@@ -137,7 +137,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 var btn1 = document.querySelector("#check");
                 btn1.click()
-            }, delay);
+            }, 2000);
 
         } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
 
@@ -147,7 +147,12 @@ function doIt(isError = false) {
             setTimeout(() => {
                 const btn1 = document.querySelector("#check");
                 btn1.click()
+<<<<<<< Updated upstream
             }, delay);
+=======
+            }, 2000);
+            return;
+>>>>>>> Stashed changes
         } else {
             // console.log("Question page");
 
@@ -294,7 +299,7 @@ function checkTranslations(toTranslate, translations) { // sprawdź czy mamy tak
 }
 
 function generateString(txtToLenght) {
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     var charactersLength = characters.length;
     var result = "";
     if (txtToLenght < 3) {
@@ -332,7 +337,7 @@ function makeMistake(toTranslate, isIntentional = false) {
 }
 
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
-    if (newWrods === {}) {
+    if (newWrods !== {} && newWrods !== 'null') {
         document.querySelector("#session_result > p").innerHTML = "<p>Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
     } else {

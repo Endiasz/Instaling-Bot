@@ -57,7 +57,6 @@ function doIt(isError = false) {
         return;
     }
 
-
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
@@ -101,13 +100,11 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
 
 
-    if (speaker.style.display == "none") { // Answear page
+    if (speaker.style.display != "none") { // Answear page
 
+        console.log("Answear page");
         if (checkTranslations(toTranslate, translations)) {  // Knowed Word
-            // console.log("Answear page");
-
             console.log("Znam słowo");
-
             setTimeout(() => {
                 var btn2 = document.querySelector("#nextword");
                 // console.log("nextword");
@@ -115,9 +112,6 @@ function doIt(isError = false) {
             }, Math.random() * 1000 + 2000);
 
         } else {   // Unknowed Word, learn
-
-            // console.log("Answear page");
-
             translations = answearLearn(word, toTranslate, translations);
             newWrods[toTranslate] = word;
             numbOfNewW++;
@@ -128,13 +122,13 @@ function doIt(isError = false) {
                 btn2.click();
             }, Math.random() * 1000 + 2000);
         }
-        return;
-    } else if (speaker.style.display != "none") { // Question page
+    } else if (speaker.style.display == "none") { // Question page
+        console.log("Question page");
 
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
+
             errorsPerRun--;
             console.log("Intencjonalny błąd")
-
             // var temp = generateString(toTranslate);
             var temp = makeMistake(toTranslate, true);
 
@@ -154,7 +148,6 @@ function doIt(isError = false) {
                 const btn1 = document.querySelector("#check");
                 btn1.click()
             }, delay);
-            return;
         } else {
             // console.log("Question page");
 
@@ -174,7 +167,6 @@ function doIt(isError = false) {
                     btn1.click()
                 }, delay);
             }
-            return;
         }
     } else {
         console.error("Coś tu się odkurwiło !? XDDD");

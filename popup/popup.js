@@ -13,7 +13,6 @@ const loopStop = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs");
 const addWordsBtn = document.querySelector(".addTranslations");
 const deleteWordsBtn = document.querySelector(".deleteTranslations");
-var elementList = document.querySelectorAll(".elemetn");
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -44,6 +43,14 @@ if (words === undefined) {
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
+
+function coppyToClibord(element) {
+    if (element.innerHTML !== undefined) {
+        var copyText = element.innerHTML;
+        //navigator.clipboard.writeText(copyText);
+        logElement.innerHTML += "Skopiowałem <br>";
+    }
+}
 
 function getWords() { // to internal varrible witchout any retardet
     for (ele in localStorage) {
@@ -85,24 +92,15 @@ function inputTranslations() {
 var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
-    elementList.addEventListener('click', coppyToClibord());
-
-    function coppyToClibord(element) {
-
-        if (element !== undefined) {
-            var copyText = element.innerHTML;
-            //navigator.clipboard.writeText(copyText);
-            //logElement.innerHTML += "Skopiowałem <br>";
-        }
-    }
 
     if (!isShowingWords) {
 
         for (var ele in words) {
             var val = words[ele];
-            console.log(ele, "\tto\t", val);
+            // console.log(ele, "\tto\t", val);
             const newDiv = document.createElement("div");
             newDiv.classList.add("element");
+            newDiv.setAttribute("onclick", '"coppyToClibord()');
             container.appendChild(newDiv);
             newDiv.innerHTML = val + "\t:\t" + ele;
         }
@@ -110,6 +108,15 @@ showWords.addEventListener("click", () => {
         const childs = document.querySelectorAll(".element");
         for (var i = 0; i < childs.length; i++) {
             container.removeChild(childs[i]);
+        }
+    }
+    if (!isShowingWords) {
+
+        var elementList = document.querySelectorAll("div.container.words > div");
+        for (ele in elementList) {
+            if (elementList[ele].innerHTML !== undefined && elementList[ele].innerHTML !== null) {
+                elementList[ele].addEventListener('click', coppyToClibord(elementList[ele]));
+            }
         }
     }
     isShowingWords = !isShowingWords;

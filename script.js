@@ -314,11 +314,11 @@ function makeMistake(toTranslate, isIntentional = false) {
     toReturn = toTranslate;
     if (toReturn.indexOf(",") != -1) {
         toReturn = toReturn.slice(toReturn.indexOf(",") + 1, toReturn.length)
-        console.log("Jest przecinek")
+        // console.log("Jest przecinek")
         return toReturn;
     } else {
         toReturn = toReturn.slice(0, toReturn.length - 3);
-        console.log("Brak przecinka")
+        // console.log("Brak przecinka")
         return toReturn;
     }
 }

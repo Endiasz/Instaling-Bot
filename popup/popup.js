@@ -36,6 +36,7 @@ if (words === undefined) {
 
 
 
+
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
@@ -92,19 +93,9 @@ function inputTranslations() {
 var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
-<<<<<<< Updated upstream
-=======
-    // elementList.addEventListener('click', coppyToClibord());
 
-    function coppyToClibord(element) {
 
-        if (element !== undefined) {
-            var copyText = element.innerHTML;
-            //navigator.clipboard.writeText(copyText);
-            //logElement.innerHTML += "Skopiowałem <br>";
-        }
-    }
->>>>>>> Stashed changes
+
 
     if (!isShowingWords) {
 
@@ -113,7 +104,6 @@ showWords.addEventListener("click", () => {
             // console.log(ele, "\tto\t", val);
             const newDiv = document.createElement("div");
             newDiv.classList.add("element");
-            newDiv.setAttribute("onclick", '"coppyToClibord()');
             container.appendChild(newDiv);
             newDiv.innerHTML = val + "\t:\t" + ele;
         }

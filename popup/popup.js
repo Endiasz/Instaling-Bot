@@ -45,14 +45,6 @@ if (words === undefined) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-function coppyToClibord(element) {
-    if (element.innerHTML !== undefined) {
-        var copyText = element.innerHTML;
-        //navigator.clipboard.writeText(copyText);
-        logElement.innerHTML += "Skopiowałem <br>";
-    }
-}
-
 function getWords() { // to internal varrible witchout any retardet
     for (ele in localStorage) {
         if (typeof (localStorage[ele]) !== typeof (() => { })) {
@@ -94,9 +86,6 @@ var isShowingWords = false;
 
 showWords.addEventListener("click", () => {
 
-
-
-
     if (!isShowingWords) {
 
         for (var ele in words) {
@@ -111,15 +100,6 @@ showWords.addEventListener("click", () => {
         const childs = document.querySelectorAll(".element");
         for (var i = 0; i < childs.length; i++) {
             container.removeChild(childs[i]);
-        }
-    }
-    if (!isShowingWords) {
-
-        var elementList = document.querySelectorAll("div.container.words > div");
-        for (ele in elementList) {
-            if (elementList[ele].innerHTML !== undefined && elementList[ele].innerHTML !== null) {
-                elementList[ele].addEventListener('click', coppyToClibord(elementList[ele]));
-            }
         }
     }
     isShowingWords = !isShowingWords;

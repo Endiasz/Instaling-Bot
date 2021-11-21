@@ -16,8 +16,6 @@ var powt = 0;
 var errorsPerRun = -1;
 var iloscPowtorzen = -1;
 
-// main loop
-
 
 function doIt(isError = false) {
 
@@ -41,6 +39,7 @@ function doIt(isError = false) {
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector("#answer_page");
 
+
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
@@ -56,6 +55,7 @@ function doIt(isError = false) {
         consol.error("Błąd pobierania elementu")
         return;
     }
+
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
@@ -100,43 +100,38 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
 
 
-    if (speaker.style.display != "none") { // Answear page
+    if (speaker.style.display == 'block') { // Answear page
 
-        console.log("Answear page");
         if (checkTranslations(toTranslate, translations)) {  // Knowed Word
             console.log("Znam słowo");
-            setTimeout(() => {
-                var btn2 = document.querySelector("#nextword");
-                // console.log("nextword");
-                btn2.click()
-            }, 2000);
 
+            setTimeout(() => {
+                document.querySelector("#nextword").click();
+                console.log("nextword");
+            }, 2000);
         } else {   // Unknowed Word, learn
+
             translations = answearLearn(word, toTranslate, translations);
             newWrods[toTranslate] = word;
             numbOfNewW++;
             console.log("Nowe słówko");
             setTimeout(() => {
-                var btn2 = document.querySelector("#nextword");
-                // console.log("nextword");
-                btn2.click();
+                document.querySelector("#nextword").click();
+                console.log("nextword");
             }, 2000);
         }
-    } else if (speaker.style.display == "none") { // Question page
-        console.log("Question page");
+    } else if (speaker.style.display === '' || speaker.style.display === 'none') { // Question page
 
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
-
             errorsPerRun--;
             console.log("Intencjonalny błąd")
-            // var temp = generateString(toTranslate);
             var temp = makeMistake(toTranslate, true);
 
             answer.value = temp;
             answer.placeholder = temp;
             setTimeout(() => {
-                var btn1 = document.querySelector("#check");
-                btn1.click()
+                document.querySelector("#check").click();
+                console.log("check");
             }, 2000);
 
         } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
@@ -145,14 +140,9 @@ function doIt(isError = false) {
             answer.value = temp;
             answer.placeholder = temp;
             setTimeout(() => {
-                const btn1 = document.querySelector("#check");
-                btn1.click()
-<<<<<<< Updated upstream
-            }, delay);
-=======
+                document.querySelector("#check").click();
+                console.log("check");
             }, 2000);
-            return;
->>>>>>> Stashed changes
         } else {
             // console.log("Question page");
 
@@ -167,9 +157,8 @@ function doIt(isError = false) {
                 answer.placeholder = answer.value;
 
                 setTimeout(() => {
-                    const btn1 = document.querySelector("#check");
-                    // console.log("check");
-                    btn1.click()
+                    document.querySelector("#check").click();
+                    console.log("check");
                 }, delay);
             }
         }
@@ -191,11 +180,9 @@ function doIt(isError = false) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
+
+
 var firstLoop = true;
-
-// wywołanie
-// TheLoopInterval = setInterval(theLoopFunction, 11000)
-
 
 var TheLoopInterval = setInterval(theLoopFunction(), 5000);
 function theLoopFunction() {
@@ -337,7 +324,7 @@ function makeMistake(toTranslate, isIntentional = false) {
 }
 
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
-    if (newWrods !== {} && newWrods !== 'null') {
+    if (numbOfNewW > 0) {
         document.querySelector("#session_result > p").innerHTML = "<p>Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
     } else {

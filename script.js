@@ -107,7 +107,7 @@ function doIt(isError = false) {
 
             setTimeout(() => {
                 document.querySelector("#nextword").click();
-                console.log("nextword");
+                // console.log("nextword");
             }, 2000);
         } else {   // Unknowed Word, learn
 
@@ -117,7 +117,7 @@ function doIt(isError = false) {
             console.log("Nowe słówko");
             setTimeout(() => {
                 document.querySelector("#nextword").click();
-                console.log("nextword");
+                // console.log("nextword");
             }, 2000);
         }
     } else if (speaker.style.display === '' || speaker.style.display === 'none') { // Question page
@@ -131,7 +131,7 @@ function doIt(isError = false) {
             answer.placeholder = temp;
             setTimeout(() => {
                 document.querySelector("#check").click();
-                console.log("check");
+                // console.log("check");
             }, 2000);
 
         } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
@@ -141,7 +141,7 @@ function doIt(isError = false) {
             answer.placeholder = temp;
             setTimeout(() => {
                 document.querySelector("#check").click();
-                console.log("check");
+                // console.log("check");
             }, 2000);
         } else {
             // console.log("Question page");
@@ -151,14 +151,14 @@ function doIt(isError = false) {
             } else {
                 // console.log("randomowy string");
                 // nie znam słowa
-                console.log("Coś wklepię");
+                console.log("Nie znam, usupełniam");
 
                 answer.value = makeMistake(toTranslate, false);
                 answer.placeholder = answer.value;
 
                 setTimeout(() => {
                     document.querySelector("#check").click();
-                    console.log("check");
+                    // console.log("check");
                 }, delay);
             }
         }
@@ -373,7 +373,7 @@ function gotMesssage(request, sender, sendResponse) {
     if (request.desire === undefined) {
 
     } else if (request.translations !== undefined) {
-        console.log("Got translations from popup")
+        // console.log("Got translations from popup")
         translations = request.translations;
     }
 

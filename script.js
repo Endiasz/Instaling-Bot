@@ -325,11 +325,15 @@ function makeMistake(toTranslate, isIntentional = false) {
 
 function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
     if (numbOfNewW > 0) {
-        document.querySelector("#session_result > p").innerHTML = "<p>Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
+        document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
-    } else {
-        document.querySelector("#session_result > p").innerHTML = "<p>Brak nowych słówek </p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
+        document.querySelector("#session_result > p").innerHTML = "<p> Stare słówka </p>"
+    } else {
+        document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p>"
+        document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
+        document.querySelector("#session_result > p").innerHTML = "<p> Tablicz nowych słówek </p>"
+        document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
     }
     //console.log(JSON.stringify(translations));
     //alert("Masz chwilę na skopiowanie słownika z konsoli");

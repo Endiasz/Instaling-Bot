@@ -331,7 +331,7 @@ function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
         document.querySelector("#session_result > p").innerHTML = "<p>Brak nowych słówek </p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
     }
-    console.log(JSON.stringify(translations));
+    //console.log(JSON.stringify(translations));
     //alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 

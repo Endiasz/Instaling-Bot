@@ -323,7 +323,7 @@ function makeMistake(toTranslate, isIntentional = false) {
     }
 }
 
-function endForToday(translations) { // wypisz cały zasobnik słów jako JSON
+function endForToday(translations, newWord, translations) { // wypisz cały zasobnik słów jako JSON
     if (numbOfNewW > 0) {
         document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);

@@ -328,7 +328,7 @@ function endForToday(translations, newWord) { // wypisz cały zasobnik słów ja
     } else {
         document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
-        document.querySelector("#session_result > p").innerHTML = "<p> Tablicz nowych słówek </p>"
+        document.querySelector("#session_result > p").innerHTML = "<p> Tablica nowych słówek </p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
     }
     //console.log(JSON.stringify(translations));

@@ -13,6 +13,7 @@ const loopStop = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs");
 const addWordsBtn = document.querySelector(".addTranslations");
 const deleteWordsBtn = document.querySelector(".deleteTranslations");
+var inputErrors = document.querySelector("#numbOfError");
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -111,7 +112,7 @@ function gotMesssage(message, sender, sendResponse) {
     if (message.desire === undefined) {
     }
     if (message.isTranslaation == "inputTranslation") {
-        // message.translations = sendResponse;
+        // message.translations = sendResponse; ?
     }
 }
 
@@ -130,10 +131,16 @@ function btnStart() {
 
                 // At this point there is found tab and ready to use as tabOfInstaling (Object)
                 logElement.innerHTML += "Start bot<br>";
+                if (inputErrors == 'null' || inputErrors === undefined) {
+                    var errors = inputErrors.value;
+                } else {
+                    var errors = 3;
+                }
 
                 let msg = {
                     active: true,
-                    sendWords: words
+                    sendWords: words,
+                    errorsPerRun: errors
                 }
                 chrome.tabs.sendMessage(tabOfInstaling.id, msg)
             }

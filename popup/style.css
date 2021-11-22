@@ -59,3 +59,16 @@ p {
     margin: 10px 0.1rem;
     border-radius: 10px;
 }
+
+.startDiv{
+    width: 80%;
+}
+
+/* 
+.startBot{
+} */
+
+#numbOfError{
+    max-width: 50%;
+    max-height: 80%;
+}

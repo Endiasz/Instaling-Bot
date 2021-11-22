@@ -381,13 +381,10 @@ function gotMesssage(request, sender, sendResponse) {
 
     } else if (request.active === true) {
 
-        // Input all parameter if needed
-        if (errorsPerRun === -1) {
-            errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
-        }
 
         clearInterval(TheLoopInterval);
         translations = request.sendWords;
+        errorsPerRun = request.errorsPerRun;
         TheLoopInterval = setInterval(theLoopFunction, 11000)
         console.log("Started bot")
 

@@ -14,7 +14,6 @@ var powt = 0;
 
 // laod bellow
 var errorsPerRun = -1;
-var iloscPowtorzen = -1;
 
 
 function doIt(isError = false) {
@@ -189,18 +188,15 @@ function theLoopFunction() {
     if (firstLoop) {
         firstLoop = false;
         stopTheLoop();
-    } else if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0 && powt < iloscPowtorzen) {
+    } else if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0) {
         doIt(true); // wykonaj wszystko
         powt++
-    } else if (powt < iloscPowtorzen) {
+    } else {
 
         doIt(); // wykonaj wszystko
         powt++
     }
-    else {
-        console.log("Zrobiłem powtóżenia");
-        stopTheLoop();
-    }
+
 }
 //  TUTAJ JUŻ KONIEC TEJ PĘTLI
 
@@ -386,9 +382,8 @@ function gotMesssage(request, sender, sendResponse) {
     } else if (request.active === true) {
 
         // Input all parameter if needed
-        if (errorsPerRun === -1 && iloscPowtorzen === -1) {
+        if (errorsPerRun === -1) {
             errorsPerRun = parseInt(prompt("Podaj liczbę błędó", 3));
-            iloscPowtorzen = parseInt(prompt("Podaj ilość powtóżeń", 100));
         }
 
         clearInterval(TheLoopInterval);

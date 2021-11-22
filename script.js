@@ -77,7 +77,7 @@ function doIt(isError = false) {
         return;
     } else if (sesresult.innerHTML != "") {
         console.log("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
-        endForToday(translations);
+        endForToday(translations, newWord);
         stopTheLoop();
         return;
     } else if (newWord.style.display != "none") {
@@ -125,7 +125,7 @@ function doIt(isError = false) {
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
             errorsPerRun--;
             console.log("Intencjonalny błąd")
-            var temp = makeMistake(toTranslate, true);
+            var temp = (toTranslate, true);
 
             answer.value = temp;
             answer.placeholder = temp;
@@ -323,12 +323,12 @@ function makeMistake(toTranslate, isIntentional = false) {
     }
 }
 
-function endForToday(translations, newWord, translations) { // wypisz cały zasobnik słów jako JSON
-    if (numbOfNewW > 0) {
+function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON
+    if (newWord !== undefined && newWord !== 'null') {
         document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
-        document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
-        document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
+        document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWord);
         document.querySelector("#session_result > p").innerHTML = "<p> Stare słówka </p>"
+        document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
     } else {
         document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);

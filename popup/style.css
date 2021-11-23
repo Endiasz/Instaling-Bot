@@ -60,7 +60,8 @@ p {
     border-radius: 10px;
 }
 
-.startDiv{
+.startDiv {
+    display: flex;
     width: 80%;
 }
 
@@ -68,7 +69,7 @@ p {
 .startBot{
 } */
 
-#numbOfError{
+#numbOfError {
     max-width: 50%;
     max-height: 80%;
 }

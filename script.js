@@ -321,15 +321,16 @@ function makeMistake(toTranslate, isIntentional = false) {
 
 function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON
     if (newWord !== undefined && newWord !== 'null') {
-        document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p>"
+        document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWord);
-        document.querySelector("#session_result > p").innerHTML = "<p> Stare słówka </p>"
+        document.querySelector("#session_result > p").innerHTML += "<br><p> Stare słówka </p><br>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
     } else {
-        document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p>"
+        document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p><br>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
-        document.querySelector("#session_result > p").innerHTML = "<p> Tablica nowych słówek </p>"
-        document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
+        // document.querySelector("#session_result > p").innerHTML += "<br><p> Tablica nowych słówek </p><br>"
+        // document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWrods);
+        console.log(JSON.stringify(translations));
     }
     //console.log(JSON.stringify(translations));
     //alert("Masz chwilę na skopiowanie słownika z konsoli");

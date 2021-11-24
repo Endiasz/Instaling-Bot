@@ -25,7 +25,7 @@ Start bot - Start bota. Na lewo należy wpisać ile błędów bot ma popełnić 
 
 Stop bot - Stop bota<br>
 
-Dodaj słowa - Wyskoczy okienko i należy podać słówka  jako tekst (np "rękawiczka, rękawica":"der Handschuh" doda nam te dwa słowa i ich tłumaczenia) Jeżeli nie mamy tłumaczeń to po prostu klikamy ok bo inaczej coś może się spierdzielić<br>
+Dodaj słowa - Wyskoczy okienko i należy podać słówka  jako tekst (np "rękawiczka, rękawica":"der Handschuh" doda nam te dwa słowa i ich tłumaczenia) Jeżeli nie mamy tłumaczeń to po prostu klikamy ok bo inaczej coś może się spierdzielić. Podajemy też ilość błędów jaką ma popełnić błąd i co ile ma się wykonywać w sekundach<br>
 
 Usuń słowa - Usuwa słowa z pamięci lokalnej bota <br>
 

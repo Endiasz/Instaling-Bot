@@ -143,7 +143,7 @@ function doIt(isError = false) {
                 // console.log("check");
             }, 2000);
         } else {
-            
+
             if (checkTranslations(toTranslate, translations)) {
 
             } else {
@@ -181,8 +181,8 @@ function doIt(isError = false) {
 
 var TheLoopInterval = setInterval(theLoopFunction(), 5000);
 function theLoopFunction() {
-    
-if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0) {
+
+    if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0) {
         doIt(true); // wykonaj z błędem obsługa ilości błędów w funkcij
         powt++
     } else {
@@ -315,9 +315,17 @@ function makeMistake(toTranslate, isIntentional = false) { // generuje intencjon
 function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON do elementu
     if (newWord !== undefined && newWord !== 'null') {
         document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
-        document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWord);
+        var temp = JSON.stringify(newWord);
+        temp = temp.trim();
+        temp[0] = '';
+        temp[temp.length - 1] = '';
+        document.querySelector("#session_result > p").innerHTML += temp;
         document.querySelector("#session_result > p").innerHTML += "<br><p> Stare słówka </p><br>"
-        document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
+        var temp = JSON.stringify(translations);
+        temp = temp.trim();
+        temp[0] = '';
+        temp[temp.length - 1] = '';
+        document.querySelector("#session_result > p").innerHTML += temp;
     } else {
         document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p><br>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);

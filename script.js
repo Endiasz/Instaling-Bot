@@ -154,7 +154,7 @@ function doIt(isError = false) {
                 setTimeout(() => {
                     document.querySelector("#check").click();
                     // console.log("check");
-                }, delay);
+                }, 4000);
             }
         }
     } else {
@@ -346,6 +346,7 @@ function countDelay(toTranslate) { // w sumie to jest do usuniecia
     for (var key in toTranslate) {
         count++;
     }
+    return Math.round(Math.random() * 300 + 4000);
 
     if (count < 6)
         return Math.round(Math.random() * 2000 + 5000);
@@ -378,7 +379,8 @@ function gotMesssage(request, sender, sendResponse) {
         clearInterval(TheLoopInterval);
         translations = request.sendWords;
         errorsPerRun = request.errorsPerRun;
-        TheLoopInterval = setInterval(theLoopFunction, 11000)
+        var timeBetwen = request.timeBetwen;
+        TheLoopInterval = setInterval(theLoopFunction, time)
         console.log("Started bot")
 
     } else if (request.active === false) {

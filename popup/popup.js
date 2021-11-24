@@ -63,8 +63,13 @@ function saveTranslations(trans) {
 // saveTranslations(words)
 
 function inputTranslations() {
-    var translationsToAssing = prompt("Podaj słownik słowa (skopiowany tekst w formacie JSON nie żadna nazwa pliku)", "");
+    var translationsToAssing = prompt('Podaj słownik słów (skopiowany tekst w (np "miejsce zamieszkania":"der Wohnort")', '');
     if (translationsToAssing != "" && translationsToAssing !== null) {
+        // Dodaj { i } dzięki czemu nie ma tego pierdzielenie się z tym i samo sobie bez tego radzi 
+        translationsToAssing = translationsToAssing.trim(); // dla pewności że nie ma znaku białego
+        translationsToAssing = '{' + translationsToAssing; // taki pushback ale dla debili
+        translationsToAssing += '}'; // dodaj na koniec
+
         translations = JSON.parse(translationsToAssing);
         translations.haveTranslations = true;
         logElement.innerHTML += "Dodałeś słówka<br>";
@@ -142,7 +147,7 @@ function btnStart() {
                     if (timeBetween.value < 4) {
                         var time = 4000;
                     }
-                    var time = timeBetween.value*1000;
+                    var time = timeBetween.value * 1000;
                 } else {
                     var time = 4000
                 }
@@ -198,6 +203,7 @@ function btnStop() {
 addWordsBtn.addEventListener('click', btnAddWords);
 function btnAddWords() {
     saveTranslations(inputTranslations());
+    getWords();
 }
 
 deleteWordsBtn.addEventListener('click', btnDeleteWords);

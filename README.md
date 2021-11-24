@@ -36,8 +36,9 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 # Lista to do 
 * przerobić system ile błędów na powtorzenia 
 
-# In progres
+# In progress
 * Sposób zapisywanie usunąć '{'
  i '}' żeby było łatwiej wszystko zapisać
+
 
 

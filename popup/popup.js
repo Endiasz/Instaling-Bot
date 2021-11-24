@@ -139,10 +139,10 @@ function btnStart() {
                 }
 
                 if (timeBetween == 'null' || timeBetween == undefined || timeBetween.value == undefined || timeBetween.value == 'null') {
-                    if (timeBetween.value < 4000) {
+                    if (timeBetween.value < 4) {
                         var time = 4000;
                     }
-                    var time = timeBetween.value;
+                    var time = timeBetween.value*1000;
                 } else {
                     var time = 4000
                 }

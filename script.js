@@ -379,8 +379,8 @@ function gotMesssage(request, sender, sendResponse) {
         clearInterval(TheLoopInterval);
         translations = request.sendWords;
         errorsPerRun = request.errorsPerRun;
-        var timeBetwen = request.timeBetwen;
-        TheLoopInterval = setInterval(theLoopFunction, time)
+        var timeBetween = request.timeBetween;
+        TheLoopInterval = setInterval(theLoopFunction, timeBetween)
         console.log("Started bot")
 
     } else if (request.active === false) {

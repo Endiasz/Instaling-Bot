@@ -62,7 +62,7 @@ function saveTranslations(trans) {
 // saveTranslations(words)
 
 function inputTranslations() {
-    var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "");
+    var translationsToAssing = prompt("Podaj słownik słowa (skopiowany tekst w formacie JSON nie żadna nazwa pliku)", "");
     if (translationsToAssing != "" && translationsToAssing !== null) {
         translations = JSON.parse(translationsToAssing);
         translations.haveTranslations = true;
@@ -70,7 +70,7 @@ function inputTranslations() {
         return translations;
     } else {
         console.log("Nic nie podałeś");
-        logElement.innerHTML += "Nie podaleś żadnych słówek<br>";
+        logElement.innerHTML += "Nie podałeś żadnych słówek<br>";
         return {};
     }
 }
@@ -122,15 +122,15 @@ function btnStart() {
 
     // console.log("Start bot");
 
-    chrome.tabs.query({}, gotTabs)
+    chrome.tabs.query({ currentWindow: true }, gotTabs)
     function gotTabs(tabs) {
         for (ele in tabs) {
             if (tabs[ele].url.indexOf("https://instaling.pl/ling2/html_app/") != -1) {
                 var tabOfInstaling = tabs[ele];
                 var foundInstsaling = true;
 
-                // At this point there is found tab and ready to use as tabOfInstaling (Object)
-                logElement.innerHTML += "Start bot<br>";
+                // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
+                logElement.innerHTML += "Start bota<br>";
                 if (inputErrors == 'null' || inputErrors === undefined) {
                     var errors = inputErrors.value;
                 } else {
@@ -148,7 +148,7 @@ function btnStart() {
 
         if (foundInstsaling != true) {
             // console.log("Something wrong");
-            logElement.innerHTML += "Something wrong no instaling<br>";
+            logElement.innerHTML += "Nie znalazłem okienka instalinga <br>";
             return;
         }
     }
@@ -166,9 +166,9 @@ function btnStop() {
                 var tabOfInstaling = tabs[ele];
                 var foundInstsaling = true;
 
-                // At this point there is found tab and ready to use as tabOfInstaling (Object)
+                // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
 
-                logElement.innerHTML += "Stop bot<br>";
+                logElement.innerHTML += "Stop bota<br>";
                 // console.log(tabOfInstaling);
 
                 let msg = { active: false }
@@ -178,7 +178,7 @@ function btnStop() {
 
         if (foundInstsaling != true) {
             console.log("Something wrong");
-            logElement.innerHTML += "Something wrong no instaling<br>";
+            logElement.innerHTML += "Nie znalazłem okienka instalinga<br>";
             return;
         }
     }

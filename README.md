@@ -8,7 +8,7 @@ Bot nie działa na windows 7
 Po zalogowaniu pojawi się ikona rozszerzenia na paski za jej pomocą można kontrolować bota, na razie to jest troche jeszcze prymitywne ale będę próbował to naprawić.
 
 * Jestem prawie pewien że bot powinien działać z każdym językiem.
-Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słowka(JSON).txt) polecam swój plik gdzieś zapisać, za pierwszym razem jak odpalimy rozszerzenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy ( bot sam zbiera tłumaczenie i można je sobie samemu zapisać gdzieś to opiszę ).
+Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słowka.txt) polecam swój plik gdzieś zapisać, za pierwszym razem jak odpalimy rozszerzenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy ( bot sam zbiera tłumaczenie i można je sobie samemu zapisać gdzieś to opiszę ).
 
 * Jak wszystko pykło(mam nadzieję ,że pyknie) to klikamy po prostu start bot ( <b>____Ważne jest żeby mieć odpaloną stronę instalinga na zadaniach____</b>).
 
@@ -25,7 +25,7 @@ Start bot - Start bota. Na lewo należy wpisać ile błędów bot ma popełnić 
 
 Stop bot - Stop bota<br>
 
-Dodaj słowa - Wyskoczy okienko i należy podać słówka w formacie json jako tekst (np {"rękawiczka, rękawica":"der Handschuh"} doda nam te dwa słowa i ich tłumaczenia) Jeżeli nie mamy tłumaczeń to po prostu klikamy ok bo inaczej coś może się spierdzielić<br>
+Dodaj słowa - Wyskoczy okienko i należy podać słówka  jako tekst (np "rękawiczka, rękawica":"der Handschuh" doda nam te dwa słowa i ich tłumaczenia) Jeżeli nie mamy tłumaczeń to po prostu klikamy ok bo inaczej coś może się spierdzielić<br>
 
 Usuń słowa - Usuwa słowa z pamięci lokalnej bota <br>
 

@@ -313,18 +313,19 @@ function makeMistake(toTranslate, isIntentional = false) { // generuje intencjon
 }
 
 function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON do elementu
-    if (newWord !== undefined && newWord !== 'null') {
+    if ((newWord !== undefined) && newWord !== 'null') {
         document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
         var temp = JSON.stringify(newWord);
         temp = temp.trim();
-        temp[0] = '';
-        temp[temp.length - 1] = '';
+        temp = temp.replace('{', '')
+        temp = temp.replace('}', '')
         document.querySelector("#session_result > p").innerHTML += temp;
+
         document.querySelector("#session_result > p").innerHTML += "<br><p> Stare słówka </p><br>"
         var temp = JSON.stringify(translations);
         temp = temp.trim();
-        temp[0] = '';
-        temp[temp.length - 1] = '';
+        temp = temp.replace('{', '')
+        temp = temp.replace('}', '')
         document.querySelector("#session_result > p").innerHTML += temp;
     } else {
         document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p><br>"
@@ -354,7 +355,7 @@ function countDelay(toTranslate) { // w sumie to jest do usuniecia
     for (var key in toTranslate) {
         count++;
     }
-    return Math.round(Math.random() * 300 + 4000);
+    return Math.round(Math.random() * 300 + 3200);
 
     if (count < 6)
         return Math.round(Math.random() * 2000 + 5000);

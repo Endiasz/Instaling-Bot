@@ -14,6 +14,7 @@ const logElement = document.querySelector(".logs");
 const addWordsBtn = document.querySelector(".addTranslations");
 const deleteWordsBtn = document.querySelector(".deleteTranslations");
 var inputErrors = document.querySelector("#numbOfError");
+var timeBetween = document.querySelector("#timeBetween");
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -137,10 +138,20 @@ function btnStart() {
                     var errors = 3;
                 }
 
+                if (timeBetween == 'null' || timeBetween == undefined || timeBetween.value == undefined || timeBetween.value == 'null') {
+                    if (timeBetween.value < 4000) {
+                        var time = 4000;
+                    }
+                    var time = timeBetween.value;
+                } else {
+                    var time = 4000
+                }
+
                 let msg = {
                     active: true,
                     sendWords: words,
-                    errorsPerRun: errors
+                    errorsPerRun: errors,
+                    timeBetween: time
                 }
                 chrome.tabs.sendMessage(tabOfInstaling.id, msg)
             }

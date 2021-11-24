@@ -37,6 +37,7 @@ function doIt(isError = false) {
     var startSesionBtn = document.querySelector("#start_session_button");
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector("#answer_page");
+    var isLoading = document.querySelector("#loading > img")
 
 
     ///////////////////////////////////////////////////
@@ -70,16 +71,22 @@ function doIt(isError = false) {
         console.log("Continue sesion page")
         continueSesionBtn.click();
         return;
-    } else if (startSesion.style.display != "none") {
+    }
+
+    if (startSesion.style.display != "none") {
         console.log("Start sesion page")
         startSesionBtn.click();
         return;
-    } else if (sesresult.innerHTML != "") {
+    }
+
+    if (sesresult.innerHTML != "") {
         console.log("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
         endForToday(translations, newWord);
         stopTheLoop();
         return;
-    } else if (newWord.style.display != "none") {
+    }
+
+    if (newWord.style.display != "none") {
         // Sprawdź czy jest strona new word
         console.log("Pomijam słówko");
         document.querySelector("#dont_know_new").click();
@@ -87,6 +94,11 @@ function doIt(isError = false) {
             //document.querySelector("#possible_word").click() // Testowanie in progres
             document.querySelector("#skip").click();
         }, 1000);
+        return;
+    }
+
+    if (isLoading.style.display != 'none') {
+
         return;
     }
 

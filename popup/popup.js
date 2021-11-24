@@ -46,7 +46,7 @@ if (words === undefined) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-function getWords() { // to internal varrible witchout any retardet
+function getWords() { // to internal variable without any retardet
     for (ele in localStorage) {
         if (typeof (localStorage[ele]) !== typeof (() => { })) {
             words[ele] = localStorage[ele];
@@ -193,3 +193,6 @@ deleteWordsBtn.addEventListener('click', btnDeleteWords);
 function btnDeleteWords() {
     localStorage.clear();
 }
+
+
+

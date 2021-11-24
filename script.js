@@ -124,7 +124,7 @@ function doIt(isError = false) {
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
             errorsPerRun--;
             console.log("Intencjonalny błąd")
-            var temp = (toTranslate, true);
+            var temp = makeMistake(toTranslate, true);
 
             answer.value = temp;
             answer.placeholder = temp;

@@ -143,15 +143,11 @@ function doIt(isError = false) {
                 // console.log("check");
             }, 2000);
         } else {
-            // console.log("Question page");
-
+            
             if (checkTranslations(toTranslate, translations)) {
 
             } else {
-                // console.log("randomowy string");
-                // nie znam słowa
-                console.log("Nie znam, usupełniam");
-
+                console.log("Nie znam, uzupełniam");
                 answer.value = makeMistake(toTranslate, false);
                 answer.placeholder = answer.value;
 
@@ -181,19 +177,16 @@ function doIt(isError = false) {
 
 
 
-var firstLoop = true;
+
 
 var TheLoopInterval = setInterval(theLoopFunction(), 5000);
 function theLoopFunction() {
-    if (firstLoop) {
-        firstLoop = false;
-        stopTheLoop();
-    } else if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0) {
-        doIt(true); // wykonaj wszystko
+    
+if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0) {
+        doIt(true); // wykonaj z błędem obsługa ilości błędów w funkcij
         powt++
     } else {
-
-        doIt(); // wykonaj wszystko
+        doIt(); // wykonaj wszystko bez błędu
         powt++
     }
 
@@ -203,7 +196,7 @@ function theLoopFunction() {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-//              Diferent usefull functions
+//              More usefull functions
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -231,7 +224,7 @@ function answearLearn(word, toTranslate, translations) {  // jeżeli nie znasz n
     return translations;
 }
 
-function chcechForAnswear(toTranslate, translations) { //poszukaj odpowiednego słowa w zasobniku
+function chcechForAnswear(toTranslate, translations) { // poszukaj odpowiednego słowa w zasobniku zwraca słowo
     var isDone = false;
 
     if (toTranslate != undefined) {
@@ -254,7 +247,7 @@ function chcechForAnswear(toTranslate, translations) { //poszukaj odpowiednego s
     } else console.error("chcechForAnswear (translations undefined)");
 }
 
-function checkTranslations(toTranslate, translations) { // sprawdź czy mamy takie słowo 
+function checkTranslations(toTranslate, translations) { // sprawdź czy mamy takie słowo zwraca true albo false
     var isLerned = false;
 
     if (toTranslate != undefined) {
@@ -281,7 +274,7 @@ function checkTranslations(toTranslate, translations) { // sprawdź czy mamy tak
     return false;
 }
 
-function generateString(txtToLenght) {
+function generateString(txtToLenght) { // generuje randomowy ciąg znaków z podanej długości stringa, przymuje stringa i zwraca wynik 
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     var charactersLength = characters.length;
     var result = "";
@@ -297,7 +290,7 @@ function generateString(txtToLenght) {
     return toTranslate;
 }
 
-function makeMistake(toTranslate, isIntentional = false) {
+function makeMistake(toTranslate, isIntentional = false) { // generuje intencjonalny błąd, odpowiedznio przemienia słówko w je zwraca
     var toReturn = "";
     if (isIntentional) {
         toReturn = chcechForAnswear(toTranslate, translations)
@@ -319,7 +312,7 @@ function makeMistake(toTranslate, isIntentional = false) {
     }
 }
 
-function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON
+function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON do elementu
     if (newWord !== undefined && newWord !== 'null') {
         document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(newWord);
@@ -341,14 +334,14 @@ function stopTheLoop() {
 }
 
 function inputTranslations() {
-    var translationsToAssing = prompt("Podaj słownik słowa w odpowiednim formacie", "");
+    var translationsToAssing = prompt("Podaj słówka w odpowiednim formacie(skopiowany tekst w formacie JSON nie żadna nazwa pliku)", "");
     if (translationsToAssing != '') {
         translations = JSON.parse(translationsToAssing);
         return translations;
     } else return '{}';
 }
 
-function countDelay(toTranslate) {
+function countDelay(toTranslate) { // w sumie to jest do usuniecia 
     var count = 0;
     for (var key in toTranslate) {
         count++;
@@ -367,14 +360,13 @@ function countDelay(toTranslate) {
 
 // Bot side of the project
 
-chrome.runtime.onMessage.addListener(gotMesssage);
+chrome.runtime.onMessage.addListener(gotMesssage); // Jeżeli otrzymasz wiadomość to wykonaj gotMessage
 
 function gotMesssage(request, sender, sendResponse) {
 
     if (request.desire === undefined) {
 
     } else if (request.translations !== undefined) {
-        // console.log("Got translations from popup")
         translations = request.translations;
     }
 

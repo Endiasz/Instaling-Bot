@@ -137,17 +137,17 @@ function btnStart() {
 
                 // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
                 logElement.innerHTML += "Start bota<br>";
-                if (inputErrors == 'null' || inputErrors === undefined) {
+                if (inputErrors !== 'null' && inputErrors !== undefined) {
                     var errors = inputErrors.value;
                 } else {
                     var errors = 3;
                 }
 
                 if (timeBetween == 'null' || timeBetween == undefined || timeBetween.value == undefined || timeBetween.value == 'null') {
+                    var time = timeBetween.value * 1000;
                     if (timeBetween.value < 4) {
                         var time = 4000;
                     }
-                    var time = timeBetween.value * 1000;
                 } else {
                     var time = 4000
                 }

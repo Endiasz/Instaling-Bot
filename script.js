@@ -37,7 +37,7 @@ function doIt(isError = false) {
     var startSesionBtn = document.querySelector("#start_session_button");
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector("#answer_page");
-    var isLoading = document.querySelector("#loading > img")
+    var isLoading = document.querySelector("#loading")
 
 
     ///////////////////////////////////////////////////

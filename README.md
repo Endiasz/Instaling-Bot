@@ -1,5 +1,5 @@
 # Instaling Bot
-* 4.65 jest najnowszą wersją<br>
+* 4.66 jest najnowszą wersją<br>
 Bot do popularnej strony instaling sam robi zadania za ciebie<br>
 Bot nie działa na windows 7
 

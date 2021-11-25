@@ -166,7 +166,7 @@ function doIt(isError = false) {
                 setTimeout(() => {
                     document.querySelector("#check").click();
                     // console.log("check");
-                }, 4000);
+                }, 2000);
             }
         }
     } else {

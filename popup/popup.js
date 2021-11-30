@@ -65,15 +65,23 @@ function saveTranslations(trans) {
 function inputTranslations() {
     var translationsToAssing = prompt('Podaj słownik słów (skopiowany tekst w (np "miejsce zamieszkania":"der Wohnort")', '');
     if (translationsToAssing != "" && translationsToAssing !== null) {
-        // Dodaj { i } dzięki czemu nie ma tego pierdzielenie się z tym i samo sobie bez tego radzi 
-        translationsToAssing = translationsToAssing.trim(); // dla pewności że nie ma znaku białego
-        translationsToAssing = '{' + translationsToAssing; // taki pushback ale dla debili
-        translationsToAssing += '}'; // dodaj na koniec
 
-        translations = JSON.parse(translationsToAssing);
-        translations.haveTranslations = true;
-        logElement.innerHTML += "Dodałeś słówka<br>";
-        return translations;
+        try {
+            // Dodaj { i } dzięki czemu nie ma tego pierdzielenie się z tym i samo sobie bez tego radzi 
+            translationsToAssing = translationsToAssing.trim(); // dla pewności że nie ma znaku białego
+            translationsToAssing = '{' + translationsToAssing; // taki pushback ale dla debili
+            translationsToAssing += '}'; // dodaj na koniec
+
+            translations = JSON.parse(translationsToAssing);
+            translations.haveTranslations = true;
+            logElement.innerHTML += "Dodałeś słówka<br>";
+            return translations;
+        } catch (err) {
+            logElement.innerHTML += "Błąd przy wpisywaniu słówek";
+            console.log("Error przy dodawaniu słówek: " + err);
+        }
+
+
     } else {
         console.log("Nic nie podałeś");
         logElement.innerHTML += "Nie podałeś żadnych słówek<br>";

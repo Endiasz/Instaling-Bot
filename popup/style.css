@@ -39,6 +39,7 @@ p {
     height: 50%;
     align-self: center;
     vertical-align: middle;
+    float: left;
 }
 
 .element {
@@ -70,10 +71,6 @@ p {
     width: 100%;
 }
 
-/* 
-.startBot{
-} */
-
 input {
     height: 1rem;
     width: 3rem;
@@ -87,6 +84,7 @@ input {
     justify-content: space-evenly;
     padding: 3px;
     border-radius: 5px;
+    clear: both;
 }
 
 footer{

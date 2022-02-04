@@ -99,28 +99,30 @@ function inputTranslations() {
 
 var isShowingWords = false
 var wordLabel = document.querySelector(".paragraph")
-wordLabel.
+wordLabel.style.display = 'none';
 
-    showWords.addEventListener("click", () => {
+showWords.addEventListener("click", () => {
 
-        if (!isShowingWords) {
+    if (!isShowingWords) {
+        wordLabel.style.display = 'block';
 
-            for (var ele in words) {
-                var val = words[ele];
-                // console.log(ele, "\tto\t", val);
-                const newDiv = document.createElement("div");
-                newDiv.classList.add("element");
-                container.appendChild(newDiv);
-                newDiv.innerHTML = val + "\t:\t" + ele;
-            }
-        } else {
-            const childs = document.querySelectorAll(".element");
-            for (var i = 0; i < childs.length; i++) {
-                container.removeChild(childs[i]);
-            }
+        for (var ele in words) {
+            var val = words[ele];
+            // console.log(ele, "\tto\t", val);
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("element");
+            container.appendChild(newDiv);
+            newDiv.innerHTML = val + "\t:\t" + ele;
         }
-        isShowingWords = !isShowingWords;
-    })
+    } else {
+        const childs = document.querySelectorAll(".element");
+        wordLabel.style.display = 'none';
+        for (var i = 0; i < childs.length; i++) {
+            container.removeChild(childs[i]);
+        }
+    }
+    isShowingWords = !isShowingWords;
+})
 
 chrome.runtime.onMessage.addListener(gotMesssage);
 
@@ -137,6 +139,7 @@ loopStart.addEventListener('click', btnStart)
 function btnStart() {
 
     // console.log("Start bot");
+    logElement.innerHTML += "Start bota<br>";
 
     chrome.tabs.query({ currentWindow: true }, gotTabs)
     function gotTabs(tabs) {
@@ -146,7 +149,6 @@ function btnStart() {
                 var foundInstsaling = true;
 
                 // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
-                logElement.innerHTML += "Start bota<br>";
                 if (inputErrors !== 'null' && inputErrors !== undefined) {
                     var errors = inputErrors.value;
                 } else {
@@ -182,6 +184,7 @@ function btnStart() {
 
 loopStop.addEventListener('click', btnStop)
 function btnStop() {
+    logElement.innerHTML += "Stop bota<br>";
 
 
     chrome.tabs.query({ currentWindow: true }, gotTabs)
@@ -194,7 +197,6 @@ function btnStop() {
 
                 // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
 
-                logElement.innerHTML += "Stop bota<br>";
                 // console.log(tabOfInstaling);
 
                 let msg = { active: false }

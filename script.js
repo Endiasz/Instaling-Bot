@@ -307,7 +307,7 @@ function makeMistake(toTranslate, isIntentional = false) { // generuje intencjon
     if (isIntentional) {
         toReturn = chcechForAnswear(toTranslate, translations)
         toReturn = toReturn.slice(0, toReturn.length - 3)
-        alert("Intencjonalny błąd " + toTranslate);
+        // alert("Intencjonalny błąd " + toTranslate);
         return toReturn;
     }
 

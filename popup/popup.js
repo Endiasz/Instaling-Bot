@@ -97,28 +97,30 @@ function inputTranslations() {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-var isShowingWords = false;
+var isShowingWords = false
+var wordLabel = document.querySelector(".paragraph")
+wordLabel.
 
-showWords.addEventListener("click", () => {
+    showWords.addEventListener("click", () => {
 
-    if (!isShowingWords) {
+        if (!isShowingWords) {
 
-        for (var ele in words) {
-            var val = words[ele];
-            // console.log(ele, "\tto\t", val);
-            const newDiv = document.createElement("div");
-            newDiv.classList.add("element");
-            container.appendChild(newDiv);
-            newDiv.innerHTML = val + "\t:\t" + ele;
+            for (var ele in words) {
+                var val = words[ele];
+                // console.log(ele, "\tto\t", val);
+                const newDiv = document.createElement("div");
+                newDiv.classList.add("element");
+                container.appendChild(newDiv);
+                newDiv.innerHTML = val + "\t:\t" + ele;
+            }
+        } else {
+            const childs = document.querySelectorAll(".element");
+            for (var i = 0; i < childs.length; i++) {
+                container.removeChild(childs[i]);
+            }
         }
-    } else {
-        const childs = document.querySelectorAll(".element");
-        for (var i = 0; i < childs.length; i++) {
-            container.removeChild(childs[i]);
-        }
-    }
-    isShowingWords = !isShowingWords;
-})
+        isShowingWords = !isShowingWords;
+    })
 
 chrome.runtime.onMessage.addListener(gotMesssage);
 

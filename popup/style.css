@@ -35,6 +35,11 @@ p {
     margin: .3rem .3rem;
     padding: .3rem;
 }
+.opt{
+    height: 50%;
+    align-self: center;
+    vertical-align: middle;
+}
 
 .element {
     text-align: center;
@@ -82,4 +87,8 @@ input {
     justify-content: space-evenly;
     padding: 3px;
     border-radius: 5px;
+}
+
+footer{
+text-align: end;
 }

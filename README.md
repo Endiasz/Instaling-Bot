@@ -38,7 +38,9 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 * przerobić system ile błędów na powtorzenia 
 
 # In progress
-* Coś
+
+# Link do wsparcia mnie
+https://paypal.me/endiaszpl
 
 
 

@@ -1,5 +1,5 @@
 # Instaling Bot
-* 4.69 jest najnowszą wersją<br>
+* 4.7 jest najnowszą wersją<br>
 Bot do popularnej strony instaling sam robi zadania za ciebie<br>
 Bot nie działa na windows 7
 
@@ -38,7 +38,9 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 * przerobić system ile błędów na powtorzenia 
 
 # In progress
-* Coś
+
+# Link do wsparcia mnie 
+https://paypal.me/endiaszpl
 
 
 

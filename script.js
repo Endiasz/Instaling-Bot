@@ -7,12 +7,12 @@
 ///////////////////////////////////////////////////
 
 // var translations = inputTranslations();
-var translations = {};
-var newWrods = [];
+var translations = [];
+var newWords = [];
 var numbOfNewW = 0;
 var powt = 0;
 
-// laod bellow
+// load bellow
 var errorsPerRun = -1;
 
 
@@ -81,7 +81,7 @@ function doIt(isError = false) {
 
     if (sesresult.innerHTML != "") {
         console.log("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
-        endForToday(translations, newWord);
+        endForToday(translations, newWords);
         stopTheLoop();
         return;
     }
@@ -118,12 +118,11 @@ function doIt(isError = false) {
 
             setTimeout(() => {
                 document.querySelector("#nextword").click();
-                // console.log("nextword");
             }, 2000);
         } else {   // Unknowed Word, learn
 
             translations = answearLearn(word, toTranslate, translations);
-            newWrods[toTranslate] = word;
+            newWords[toTranslate] = word;
             numbOfNewW++;
             console.log("Nowe słówko");
             setTimeout(() => {
@@ -182,7 +181,7 @@ function doIt(isError = false) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-//              Main calling
+//              Main loop
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -324,16 +323,18 @@ function makeMistake(toTranslate, isIntentional = false) { // generuje intencjon
     }
 }
 
-function endForToday(translations, newWord) { // wypisz cały zasobnik słów jako JSON do elementu
-    if ((newWord !== undefined) && newWord !== 'null') {
+function endForToday(translations, newWordss) { // wypisz cały zasobnik słów jako JSON do elementu
+    if ((newWordss != undefined) && newWordss != 'null') {
+        console.log(newWords)
+        console.log(newWordss)
         document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
-        var temp = JSON.stringify(newWord);
+        var temp = JSON.stringify(newWordss);
         temp = temp.trim();
         temp = temp.replace('{', '')
         temp = temp.replace('}', '')
         document.querySelector("#session_result > p").innerHTML += temp;
 
-        document.querySelector("#session_result > p").innerHTML += "<br><p> Stare słówka </p><br>"
+        document.querySelector("#session_result > p").innerHTML += "<br><p> Wszystkie słówka </p><br>"
         var temp = JSON.stringify(translations);
         temp = temp.trim();
         temp = temp.replace('{', '')

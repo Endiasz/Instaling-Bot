@@ -1,7 +1,7 @@
 # Instaling Bot
 * 4.7 jest najnowszą wersją<br>
-Bot do popularnej strony instaling sam robi zadania za ciebie<br>
-Bot nie działa na windows 7
+Bot do popularnej strony instaling sam robi zadania za ciebie<br
+Niestety nie działa na widows 7, nie wiem jak z innymi systemami operacyjnymi, windows 10 działa bez rarzutów 
 
 # Jak to ustawić?
 

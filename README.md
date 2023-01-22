@@ -37,7 +37,8 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 # Lista to do 
 * przerobić system ile błędów na powtorzenia 
 
-# In progress
+# Status bota. 
+Projekt został przezemnie porzucony ze względu skończenia szkoły. Jeżeli zauważysz jakiś problem pisz a ja postaram się go naprawić. Nie planuję kontnułować tworzenia bota
 
 # Link do wsparcia mnie 
 https://paypal.me/endiaszpl

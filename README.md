@@ -38,7 +38,7 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 * przerobić system ile błędów na powtorzenia 
 
 # Status bota. 
-Projekt został przezemnie porzucony ze względu skończenia szkoły. Jeżeli zauważysz jakiś problem pisz a ja postaram się go naprawić. Nie planuję kontnułować tworzenia bota
+Projekt został porzucony ze względu skończenia szkoły. Jeżeli zauważysz jakiś problem pisz śmiało a ja postaram się go naprawić. Nie planuję kontnułować tworzenia bota
 
 # Link do wsparcia mnie 
 https://paypal.me/endiaszpl

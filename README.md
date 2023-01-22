@@ -22,7 +22,7 @@ Nie wszystko może działać ale te najważniejsze opcje powinny
 * <b>Bot sobie sam zapisuje wszystkie słowa w pamięci przeglądarki i nie trzeba ich wpisywać za każdym razem</b>
 
 * Funkcje z okienka PopUp <br><br>
-Start bot - Start bota. Na lewo należy wpisać ile błędów bot ma popełnić przy przejściu<br>
+Start bot - Start bota. Na lewo należy wpisać ile błędów bot ma popełnić przy przejściu
 
 Stop bot - Stop bota<br>
 

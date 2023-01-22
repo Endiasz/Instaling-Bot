@@ -6,10 +6,10 @@ Niestety nie działa na widows 7, nie wiem jak z innymi systemami operacyjnymi, 
 # Jak to ustawić?
 
 * Plik pobrany z githuba trzeba wypakować gdzieś na komputerze i wrzucić jako rozszerzenie do przeglądarki np chrome (trzeba wejść w Więcej narzędzi > Rozszerzenia, tutaj włączamy tryb dewelopera, klikamy załaduj rozpakowane i wybieramy rozpakowany folder)
-Po zalogowaniu pojawi się ikona rozszerzenia na paski za jej pomocą można kontrolować bota, na razie to jest troche jeszcze prymitywne ale będę próbował to naprawić.
+Po zalogowaniu pojawi się ikona rozszerzenia na pasku rozszerzeń, za jej pomocą można kontrolować bota. Jest to troche prymitywne ale działa. :P
 
 * Jestem prawie pewien że bot powinien działać z każdym językiem.
-Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słowka.txt) polecam swój plik gdzieś zapisać, za pierwszym razem jak odpalimy rozszerzenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy ( bot sam zbiera tłumaczenie i można je sobie samemu zapisać gdzieś to opiszę ).
+Ważne jest mieć gdzieś plik z słówkami (ja mam tutaj słowka.txt) polecam plik gdzieś zapisać, za pierwszym razem jak odpalimy rozszerzenie akcją powinno się pokazać pole do wpisanie słowek jest to forma wprowadzania tłumaczeń jakie mamy ( bot sam zbiera tłumaczenie i można je sobie samemu zapisać w danych lokalnych przeglądarki).
 
 * Jak wszystko pykło(mam nadzieję ,że pyknie) to klikamy po prostu start bot ( <b>____Ważne jest żeby mieć odpaloną stronę instalinga na zadaniach____</b>).
 

@@ -34,7 +34,7 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 
 * Na stronie końcowej pokażą się nam nowe słowa. Wszystko jest tam opisane
 
-# Status bota. 
+# Status bota
 Projekt został porzucony ze względu skończenia szkoły. Jeżeli zauważysz jakiś problem pisz śmiało a ja postaram się go naprawić. Nie planuję kontnułować tworzenia bota
 
 # Link do wsparcia mnie 

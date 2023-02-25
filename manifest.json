@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Instaling Bot",
     "version": "0.4.7",
     "content_scripts": [

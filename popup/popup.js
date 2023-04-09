@@ -156,9 +156,12 @@ function btnStart() {
                 }
 
                 if (timeBetween == 'null' || timeBetween == undefined || timeBetween.value == undefined || timeBetween.value == 'null') {
-                    var time = 4000
+                    var time = 200
                 } else {
                     var time = timeBetween.value * 1000;
+
+                    if (timeBetween.value < 200)
+                        timeBetween.value = 200
                 }
 
                 let msg = {

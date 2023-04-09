@@ -93,7 +93,7 @@ function doIt(isError = false) {
         setTimeout(() => {
             //document.querySelector("#possible_word").click() // Testowanie in progres
             document.querySelector("#skip").click();
-        }, 1000);
+        }, 100);
         return;
     }
 
@@ -118,7 +118,7 @@ function doIt(isError = false) {
 
             setTimeout(() => {
                 document.querySelector("#nextword").click();
-            }, 2000);
+            }, 100);
         } else {   // Unknowed Word, learn
 
             translations = answearLearn(word, toTranslate, translations);
@@ -128,7 +128,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 document.querySelector("#nextword").click();
                 // console.log("nextword");
-            }, 2000);
+            }, 100);
         }
     } else if (speaker.style.display === '' || speaker.style.display === 'none') { // Question page
 
@@ -142,7 +142,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 document.querySelector("#check").click();
                 // console.log("check");
-            }, 2000);
+            }, 100);
 
         } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
 
@@ -152,7 +152,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 document.querySelector("#check").click();
                 // console.log("check");
-            }, 2000);
+            }, 100);
         } else {
 
             if (checkTranslations(toTranslate, translations)) {
@@ -165,7 +165,7 @@ function doIt(isError = false) {
                 setTimeout(() => {
                     document.querySelector("#check").click();
                     // console.log("check");
-                }, 2000);
+                }, 100);
             }
         }
     } else {

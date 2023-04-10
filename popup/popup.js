@@ -161,7 +161,7 @@ function btnStart() {
                     var time = timeBetween.value * 1000;
 
                     if (timeBetween.value < 200)
-                        timeBetween.value = 200
+                        time = 200
                 }
 
                 let msg = {

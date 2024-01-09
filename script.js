@@ -15,8 +15,9 @@ var powt = 0;
 // load bellow
 var errorsPerRun = -1;
 
-
 function doIt(isError = false) {
+
+
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
@@ -40,6 +41,7 @@ function doIt(isError = false) {
     var isLoading = document.querySelector("#loading")
 
 
+
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
@@ -47,6 +49,7 @@ function doIt(isError = false) {
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
+
     if (newWord == undefined) {
         consol.error("Błąd pobierania elementu")
         return;
@@ -57,6 +60,7 @@ function doIt(isError = false) {
     }
 
 
+
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
@@ -64,8 +68,6 @@ function doIt(isError = false) {
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
-
-
 
     if (continueSesion.style.display != "none") {
         console.log("Continue sesion page")
@@ -93,7 +95,7 @@ function doIt(isError = false) {
         setTimeout(() => {
             //document.querySelector("#possible_word").click() // Testowanie in progres
             document.querySelector("#skip").click();
-        }, 1000);
+        }, 100);
         return;
     }
 
@@ -101,6 +103,8 @@ function doIt(isError = false) {
 
         return;
     }
+
+
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
@@ -110,7 +114,6 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
-
     if (speaker.style.display == 'block') { // Answear page
 
         if (checkTranslations(toTranslate, translations)) {  // Knowed Word
@@ -118,7 +121,7 @@ function doIt(isError = false) {
 
             setTimeout(() => {
                 document.querySelector("#nextword").click();
-            }, 2000);
+            }, 100);
         } else {   // Unknowed Word, learn
 
             translations = answearLearn(word, toTranslate, translations);
@@ -128,7 +131,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 document.querySelector("#nextword").click();
                 // console.log("nextword");
-            }, 2000);
+            }, 100);
         }
     } else if (speaker.style.display === '' || speaker.style.display === 'none') { // Question page
 
@@ -142,7 +145,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 document.querySelector("#check").click();
                 // console.log("check");
-            }, 2000);
+            }, 100);
 
         } else if (checkTranslations(toTranslate, translations)) {  // Do when Word is known 
 
@@ -152,7 +155,7 @@ function doIt(isError = false) {
             setTimeout(() => {
                 document.querySelector("#check").click();
                 // console.log("check");
-            }, 2000);
+            }, 100);
         } else {
 
             if (checkTranslations(toTranslate, translations)) {
@@ -165,16 +168,13 @@ function doIt(isError = false) {
                 setTimeout(() => {
                     document.querySelector("#check").click();
                     // console.log("check");
-                }, 2000);
+                }, 100);
             }
         }
     } else {
         console.error("Coś tu się odkurwiło !? XDDD");
     }
 }
-
-
-
 
 
 
@@ -185,10 +185,6 @@ function doIt(isError = false) {
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
-
-
-
-
 
 var TheLoopInterval = setInterval(theLoopFunction(), 5000);
 function theLoopFunction() {
@@ -211,8 +207,6 @@ function theLoopFunction() {
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
-
-
 
 function answearLearn(word, toTranslate, translations) {  // jeżeli nie znasz naucz się
     // var word = document.querySelector("#word").innerHTML;
@@ -285,7 +279,7 @@ function checkTranslations(toTranslate, translations) { // sprawdź czy mamy tak
     return false;
 }
 
-function generateString(txtToLenght) { // generuje randomowy ciąg znaków z podanej długości stringa, przymuje stringa i zwraca wynik 
+function generateString(txtToLenght) { // generuje randomowy ciąg znaków z podanej długości stringa, przymuje stringa i zwraca wynik - string
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     var charactersLength = characters.length;
     var result = "";
@@ -369,17 +363,9 @@ function countDelay(toTranslate) { // w sumie to jest do usuniecia
         count++;
     }
     return Math.round(Math.random() * 300 + 3200);
-
-    if (count < 6)
-        return Math.round(Math.random() * 2000 + 5000);
-    else if (count < 10)
-        return Math.round(Math.random() * 2000 + 5000);
-    else if (count < 15)
-        return Math.round(Math.random() * 2000 + 5000);
-    else
-        return Math.round(Math.random() * 2000 + 5000);
-
 }
+
+
 
 // Bot side of the project
 

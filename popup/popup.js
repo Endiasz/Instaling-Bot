@@ -156,12 +156,16 @@ function btnStart() {
                 }
 
                 if (timeBetween == 'null' || timeBetween == undefined || timeBetween.value == undefined || timeBetween.value == 'null') {
-                    var time = 4000
+                    var time = 200
                 } else {
                     var time = timeBetween.value * 1000;
-                    if (timeBetween.value < 4) {
-                        var time = 4000;
-                    }
+                    
+                    console.log("jebanie")
+                    console.log(timeBetween.value)
+                    console.log(time)
+
+                    if (time < 200)
+                        time = 200
                 }
 
                 let msg = {

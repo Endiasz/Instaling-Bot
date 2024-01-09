@@ -1,5 +1,5 @@
 # Instaling Bot
-* 4.8 jest najnowszą wersją<br>
+* 4.9 jest najnowszą wersją<br>
 Bot do popularnej strony instaling sam robi zadania za ciebie<br
 Niestety nie działa na widows 7, nie wiem jak z innymi systemami operacyjnymi, windows 10 działa bez rarzutów 
 

@@ -2,7 +2,7 @@ Oficjalne rozszerzenie na google: https://chromewebstore.google.com/detail/insta
 
 # Update 0.5
 Doda automatyczne zapisywanie słówek po zakączeniu dnia
-(Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobacztć słówka trzeba otworzyć popup jeszcze raz.)
+(Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobaczyć słówka trzeba otworzyć popup jeszcze raz.)
 
 # Instaling Bot
 * 0.5 jest najnowszą wersją<br>

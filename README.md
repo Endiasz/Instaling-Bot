@@ -1,3 +1,4 @@
+Oficjalne rozszerzenie na google: https://chromewebstore.google.com/detail/instaling-bot/nhbenaecaphgicecneojaihcjbpglbdn
 # Instaling Bot
 * 4.9 jest najnowszą wersją<br>
 Bot do popularnej strony instaling sam robi zadania za ciebie<br

@@ -16,6 +16,7 @@ const deleteWordsBtn = document.querySelector(".deleteTranslations");
 var inputErrors = document.querySelector("#numbOfError");
 var timeBetween = document.querySelector("#timeBetween");
 
+
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
@@ -24,19 +25,40 @@ var timeBetween = document.querySelector("#timeBetween");
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-if (localStorage.haveTranslations === undefined) {
-    saveTranslations(inputTranslations());
-    // localStorage = inputTranslations();
-}
+// if (localStorage.haveTranslations === undefined) {
+//     saveTranslations(inputTranslations());
+//     // localStorage = inputTranslations();
+// }
+// Pobieranie słówek z background.js po otwarciu popup
+document.addEventListener('DOMContentLoaded', () => {
+    chrome.runtime.sendMessage({ type: 'getWords' }, (response) => {
+
+        if(response==="Brak"){
+            logElement.innerHTML += "Nie ma nowych słówek<br>";
+            console.log("nie ma słówek")
+            
+        }   
+        else {
+            if (response.words) {
+                // displayWordsInPopup(response.words);
+                saveTranslations(response.words)
+                logElement.innerHTML += "Pobrałem słówka z witryny<br>";
+                console.log("Dostałem słowka z witryny...")
+            }
+            else{
+                stop = true
+                throw new Error("Nieautoryzowana wersja rozszerzenia! Totaj link do rozszerzenia prawdziwego autora https://github.com/Endiasz/Instaling-Bot");
+            }
+        }
+    });
+});
+
+
 
 if (words === undefined) {
     var words = {}
     getWords()
 }
-
-
-
-
 
 
 ///////////////////////////////////////////////////
@@ -226,6 +248,9 @@ deleteWordsBtn.addEventListener('click', btnDeleteWords);
 function btnDeleteWords() {
     localStorage.clear();
 }
+
+
+
 
 
 

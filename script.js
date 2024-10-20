@@ -50,10 +50,10 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
-    if (newWord == undefined) {
-        consol.error("Błąd pobierania elementu")
-        return;
-    }
+    // if (newWord == undefined) {
+    //     consol.error("Błąd pobierania elementu")
+    //     return;
+    // }
     if (toTranslate == undefined) {
         consol.error("Błąd pobierania elementu")
         return;
@@ -342,6 +342,11 @@ function endForToday(translations, newWordss) { // wypisz cały zasobnik słów 
         console.log(JSON.stringify(translations));
     }
     //console.log(JSON.stringify(translations));
+
+    //let wordsToSend = translations;
+    sendWordsToBackground(translations);
+    console.log(translations);
+    console.log("Wysłałem dane do background");
     //alert("Masz chwilę na skopiowanie słownika z konsoli");
 }
 
@@ -363,6 +368,14 @@ function countDelay(toTranslate) { // w sumie to jest do usuniecia
         count++;
     }
     return Math.round(Math.random() * 300 + 3200);
+}
+
+// Wysyłanie danych do background.js
+function sendWordsToBackground(words) {
+    chrome.runtime.sendMessage({
+        type: 'saveWords',
+        data: words
+    });
 }
 
 

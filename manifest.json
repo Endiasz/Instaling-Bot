@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Instaling Bot",
-    "version": "0.4.9",
+    "version": "0.5",
     "content_scripts": [
         {
             "matches": [
@@ -15,10 +15,13 @@
     "permissions": [
         "tabs"
     ],
+        "background": {
+       "service_worker": "background.js"
+    },
     "action": {
         "default_icon": "img/logo.png",
         "default_popup": "popup/popup.html",
-        "default_title": "He he"
+        "default_title": "Instalig bot"
     },
     "author": "Endiasz"
 }

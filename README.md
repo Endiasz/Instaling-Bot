@@ -1,6 +1,11 @@
 Oficjalne rozszerzenie na google: https://chromewebstore.google.com/detail/instaling-bot/nhbenaecaphgicecneojaihcjbpglbdn
+
+# Update 0.5
+Doda automatyczne zapisywanie słówek po zakączeniu dnia
+(Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobacztć słówka trzeba otworzyć popup jeszcze raz.)
+
 # Instaling Bot
-* 4.9 jest najnowszą wersją<br>
+* 0.5 jest najnowszą wersją<br>
 Bot do popularnej strony instaling sam robi zadania za ciebie<br
 Niestety nie działa na widows 7, nie wiem jak z innymi systemami operacyjnymi, windows 10 działa bez rarzutów 
 

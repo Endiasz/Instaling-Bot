@@ -165,8 +165,10 @@ function btnStart() {
 
     chrome.tabs.query({ currentWindow: true }, gotTabs)
     function gotTabs(tabs) {
+        console.log("szukam okienka instalinga")
         for (ele in tabs) {
             if (tabs[ele].url.indexOf("https://instaling.pl/ling2/html_app/") != -1) {
+                console.log("Znalazłem okienko instalinga");
                 var tabOfInstaling = tabs[ele];
                 var foundInstsaling = true;
 
@@ -197,6 +199,7 @@ function btnStart() {
                     timeBetween: time
                 }
                 chrome.tabs.sendMessage(tabOfInstaling.id, msg)
+                console.log("Wysłałem wiadomość do content.js")
             }
         }
 
@@ -218,6 +221,7 @@ function btnStop() {
 
         for (ele in tabs) {
             if (tabs[ele].url.indexOf("https://instaling.pl/ling2/html_app/") != -1) {
+                console.log("Znalazłem okienko instalinga");
                 var tabOfInstaling = tabs[ele];
                 var foundInstsaling = true;
 

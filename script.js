@@ -27,8 +27,9 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
+
     var newWord = document.querySelector("#new_word_form");
-    var toTranslate = document.querySelector("div.translations").innerHTML;
+    var toTranslate = document.querySelector("#question > div.word_data > div.translation").innerHTML;
     var answer = document.querySelector("#answer");
     var delay = countDelay(toTranslate);
     var sesresult = document.querySelector("#session_result");

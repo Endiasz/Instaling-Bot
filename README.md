@@ -1,8 +1,6 @@
 Oficjalne rozszerzenie na google: https://chromewebstore.google.com/detail/instaling-bot/nhbenaecaphgicecneojaihcjbpglbdn
 
-# Update 0.5
-Doda automatyczne zapisywanie słówek po zakączeniu dnia
-(Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobaczyć słówka trzeba otworzyć popup jeszcze raz.)
+
 
 # Instaling Bot
 * 0.51 jest najnowszą wersją<br>
@@ -39,6 +37,12 @@ Usuń słowa - Usuwa słowa z pamięci lokalnej bota <br>
 Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 
 * Na stronie końcowej pokażą się nam nowe słowa. Wszystko jest tam opisane
+
+# Update 0.5
+Doda automatyczne zapisywanie słówek po zakączeniu dnia
+(Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobaczyć słówka trzeba otworzyć popup jeszcze raz.)
+# Update 0.52
+Zmiana (naprawa) ścieżki do instalinga 
 
 # Status bota
 Projekt został porzucony ze względu skończenia szkoły. Jeżeli zauważysz jakiś problem pisz śmiało a ja postaram się go naprawić. Nie planuję kontnułować tworzenia bota

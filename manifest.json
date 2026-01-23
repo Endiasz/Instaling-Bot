@@ -1,11 +1,11 @@
 {
     "manifest_version": 3,
     "name": "Instaling Bot",
-    "version": "0.51",
+    "version": "0.52",
     "content_scripts": [
         {
             "matches": [
-                "https://instaling.pl/ling2/html_app/*"
+                "https://instaling.pl/app/session/*"
             ],
             "js": [
                 "script.js"

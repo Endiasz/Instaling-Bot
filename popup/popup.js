@@ -167,7 +167,7 @@ function btnStart() {
     function gotTabs(tabs) {
         console.log("szukam okienka instalinga")
         for (ele in tabs) {
-            if (tabs[ele].url.indexOf("https://instaling.pl/app/") != -1) {
+            if (tabs[ele].url.indexOf("https://instaling.pl/app/") != -1 || tabs[ele].url.indexOf("https://instaling.pl/ling2/") != -1) {
                 console.log("Znalazłem okienko instalinga");
                 var tabOfInstaling = tabs[ele];
                 var foundInstsaling = true;
@@ -220,7 +220,7 @@ function btnStop() {
     function gotTabs(tabs) {
 
         for (ele in tabs) {
-            if (tabs[ele].url.indexOf("https://instaling.pl/app/") != -1) {
+            if (tabs[ele].url.indexOf("https://instaling.pl/app/") != -1 || tabs[ele].url.indexOf("https://instaling.pl/ling2/") != -1) {
                 console.log("Znalazłem okienko instalinga");
                 var tabOfInstaling = tabs[ele];
                 var foundInstsaling = true;

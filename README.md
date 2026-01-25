@@ -41,7 +41,7 @@ Show words - Pokazuje wszystkie słowa jakie są zapisane w pamięci <br>
 # Update 0.5
 Doda automatyczne zapisywanie słówek po zakączeniu dnia
 (Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobaczyć słówka trzeba otworzyć popup jeszcze raz.)
-# Update 0.52 + 0.53
+# Update 0.52 + 0.53 + 0.54
 Zmiana (naprawa) ścieżki do instalinga 
 
 # Status bota

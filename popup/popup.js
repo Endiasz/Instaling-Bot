@@ -29,8 +29,12 @@ var timeBetween = document.querySelector("#timeBetween");
 //     saveTranslations(inputTranslations());
 //     // localStorage = inputTranslations();
 // }
+
+
 // Pobieranie słówek z background.js po otwarciu popup
-document.addEventListener('DOMContentLoaded', () => {
+function AddWordsFromBackground() {
+    console.log("Pobieranie słówek z background.js")
+
     chrome.runtime.sendMessage({ type: 'getWords' }, (response) => {
 
         if(response==="Brak"){
@@ -51,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
+
+}
+AddWordsFromBackground()
 
 
 
@@ -75,6 +81,7 @@ function getWords() { // to internal variable without any retardet
             words[ele] = localStorage[ele];
         }
     }
+    console.log("Pobieranie słówek z localStorage")
 }
 
 function saveTranslations(trans) {
@@ -100,7 +107,7 @@ function inputTranslations() {
             return translations;
         } catch (err) {
             logElement.innerHTML += "Błąd przy wpisywaniu słówek";
-            console.log("Error przy dodawaniu słówek: " + err);
+            console.log("Błąd przy dodawaniu słówek: " + err);
         }
 
 
@@ -124,8 +131,14 @@ var wordLabel = document.querySelector(".paragraph")
 wordLabel.style.display = 'none';
 
 showWords.addEventListener("click", () => {
+    
 
-    if (!isShowingWords) {
+    if (!isShowingWords) { // jeśli nie pokazuje słówek to pokaż
+        getWords(); // Pobieranie słówek z localStorage do wewnętrznej zmiennej (Pobiera drugi raz, zobaczymy jak działa)
+        AddWordsFromBackground(); // Pobieranie słówek z background.js po kliknięciu przycisku pokaż słówka
+        setInterval(() => {
+            // getWords(); // Pobieranie słówek z localStorage do wewnętrznej zmiennej co 2 sekundy (Pobiera co 2 sekundy, zobaczymy jak działa)
+        }, 100);
         wordLabel.style.display = 'block';
 
         for (var ele in words) {
@@ -136,7 +149,7 @@ showWords.addEventListener("click", () => {
             container.appendChild(newDiv);
             newDiv.innerHTML = val + "\t:\t" + ele;
         }
-    } else {
+    } else { // jeśli pokazuje słówka to schowaj
         const childs = document.querySelectorAll(".element");
         wordLabel.style.display = 'none';
         for (var i = 0; i < childs.length; i++) {

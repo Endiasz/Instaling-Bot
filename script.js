@@ -319,15 +319,24 @@ function makeMistake(toTranslate, isIntentional = false) { // generuje intencjon
 }
 
 function endForToday(translations, newWordss) { // wypisz cały zasobnik słów jako JSON do elementu
-    if ((newWordss != undefined) && newWordss != 'null') {
-        console.log(newWords)
-        console.log(newWordss)
-        document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
-        var temp = JSON.stringify(newWordss);
-        temp = temp.trim();
-        temp = temp.replace('{', '')
-        temp = temp.replace('}', '')
-        document.querySelector("#session_result > p").innerHTML += temp;
+    if ((newWordss != [] ) ) {
+        console.log("Są nowe słówka", numbOfNewW);
+
+        // console.log(typeof newWordss)
+        // console.log(typeof translations)
+
+
+        // document.querySelector("#session_result > p").innerHTML = "<p> Nowe słowa skopiuj sobie je i dodaj za pomocą dodaj słowa</p><br>"
+        // var temp = JSON.stringify(newWordss);
+        // temp = temp.trim();
+        // temp = temp.replace('{', '')
+        // temp = temp.replace('}', '')
+        // document.querySelector("#session_result > p").innerHTML += temp;
+        // console.log(temp)
+        // console.log(newWordss)
+        // // console.log(newWordss)
+
+        // Kurda jego mać nie mam pojęcia czemu nie działa...
 
         document.querySelector("#session_result > p").innerHTML += "<br><p> Wszystkie słówka </p><br>"
         var temp = JSON.stringify(translations);
@@ -335,7 +344,11 @@ function endForToday(translations, newWordss) { // wypisz cały zasobnik słów 
         temp = temp.replace('{', '')
         temp = temp.replace('}', '')
         document.querySelector("#session_result > p").innerHTML += temp;
+        console.log(temp)
+        console.log(translations)   
     } else {
+        console.log("Brak nowych słówek");
+
         document.querySelector("#session_result > p").innerHTML = "<p> Brak nowych słówek </p><br>"
         document.querySelector("#session_result > p").innerHTML += JSON.stringify(translations);
         // document.querySelector("#session_result > p").innerHTML += "<br><p> Tablica nowych słówek </p><br>"

@@ -3,7 +3,7 @@ Oficjalne rozszerzenie na google: https://chromewebstore.google.com/detail/insta
 
 
 # Instaling Bot
-* 0.53 jest najnowszą wersją<br>
+* 0.55 jest najnowszą wersją<br>
 Bot do popularnej strony instaling sam robi zadania za ciebie<br
 Niestety nie działa na widows 7, nie wiem jak z innymi systemami operacyjnymi, windows 10 działa bez rarzutów 
 
@@ -43,6 +43,8 @@ Doda automatyczne zapisywanie słówek po zakączeniu dnia
 (Aby zadziałało trzebą po zakończeniu dnia włączyć jeszcze raz popup klikając w ikonkę rozszerzenia, wyświetli się informacja o pobraniu słówek. Aby zobaczyć słówka trzeba otworzyć popup jeszcze raz.)
 # Update 0.52 + 0.53 + 0.54
 Zmiana (naprawa) ścieżki do instalinga 
+# Update 0.55
+Lekka optymalizacja zapysywania i wyświetlania słówek 
 
 # Status bota
 Projekt został porzucony ze względu skończenia szkoły. Jeżeli zauważysz jakiś problem pisz śmiało a ja postaram się go naprawić. Nie planuję kontnułować tworzenia bota

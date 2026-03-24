@@ -1,273 +1,302 @@
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-//              Declarate all varibles
-
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-const container = document.querySelector(".container")
-const showWords = document.querySelector(".showTranslations");
-const loopStart = document.querySelector(".startBot");
-const loopStop = document.querySelector(".stopBot");
+const container = document.querySelector(".container");
+const showWordsBtn = document.querySelector(".showTranslations");
+const startBtn = document.querySelector(".startBot");
+const stopBtn = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs");
 const addWordsBtn = document.querySelector(".addTranslations");
 const deleteWordsBtn = document.querySelector(".deleteTranslations");
-var inputErrors = document.querySelector("#numbOfError");
-var timeBetween = document.querySelector("#timeBetween");
 
+const inputErrors = document.querySelector("#numbOfError");
+const timeBetween = document.querySelector("#timeBetween");
 
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-//              Basic logic
+const wordLabel = document.querySelector(".paragraph");
+wordLabel.style.display = "none";
 
 ///////////////////////////////////////////////////
+// STORAGE
 ///////////////////////////////////////////////////
 
-// if (localStorage.haveTranslations === undefined) {
-//     saveTranslations(inputTranslations());
-//     // localStorage = inputTranslations();
-// }
-
-
-// Pobieranie słówek z background.js po otwarciu popup
-function AddWordsFromBackground() {
-    console.log("Pobieranie słówek z background.js")
-
-    chrome.runtime.sendMessage({ type: 'getWords' }, (response) => {
-
-        if(response==="Brak"){
-            logElement.innerHTML += "Nie ma nowych słówek<br>";
-            console.log("nie ma słówek")
-            
-        }   
-        else {
-            if (response.words) {
-                // displayWordsInPopup(response.words);
-                saveTranslations(response.words)
-                logElement.innerHTML += "Pobrałem słówka z witryny<br>";
-                console.log("Dostałem słowka z witryny...")
-            }
-            else{
-                stop = true
-                throw new Error("Nieautoryzowana wersja rozszerzenia! Totaj link do rozszerzenia prawdziwego autora https://github.com/Endiasz/Instaling-Bot");
-            }
-        }
+function getWords() {
+    return new Promise((resolve) => {
+        chrome.storage.local.get(["words"], (result) => {
+            resolve(result.words || {});
+        });
     });
-
-}
-AddWordsFromBackground()
-
-
-
-if (words === undefined) {
-    var words = {}
-    getWords()
 }
 
+function normalizeWords(words) {
+    let changed = false;
 
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-//              Different usefull functions
-
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-function getWords() { // to internal variable without any retardet
-    for (ele in localStorage) {
-        if (typeof (localStorage[ele]) !== typeof (() => { })) {
-            words[ele] = localStorage[ele];
+    for (const key in words) {
+        if (typeof words[key] !== "object") {
+            words[key] = {
+                value: words[key],
+                added: Date.now()
+            };
+            changed = true;
         }
     }
-    console.log("Pobieranie słówek z localStorage")
+
+    if (changed) {
+        chrome.storage.local.set({ words });
+    }
+
+    return words;
 }
 
-function saveTranslations(trans) {
-    for (ele in trans) {
-        localStorage[ele] = trans[ele]
-    }
+function saveWords(newWords) {
+    return new Promise(async (resolve) => {
+        let existing = await getWords();
+        existing = normalizeWords(existing);
+
+        for (const key in newWords) {
+            if (existing[key]) {
+                existing[key].value = newWords[key];
+            } else {
+                existing[key] = {
+                    value: newWords[key],
+                    added: Date.now()
+                };
+            }
+        }
+
+        chrome.storage.local.set({ words: existing }, () => {
+            resolve(existing);
+        });
+    });
 }
-// saveTranslations(words)
+
+function clearWords() {
+    chrome.storage.local.set({ words: {} });
+}
+
+///////////////////////////////////////////////////
+// LOG
+///////////////////////////////////////////////////
+
+function log(msg) {
+    logElement.innerHTML += msg + "<br>";
+}
+
+///////////////////////////////////////////////////
+// BACKGROUND
+///////////////////////////////////////////////////
+
+function getWordsFromBackground() {
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage({ type: "getWords" }, async (response) => {
+            let words = response.words || {};
+            words = normalizeWords(words);
+            resolve(words);
+        });
+    });
+}
+
+///////////////////////////////////////////////////
+// UI
+///////////////////////////////////////////////////
+
+let isShowing = false;
+
+async function toggleWords() {
+    if (!isShowing) {
+        container.innerHTML = "";
+        wordLabel.style.display = "block";
+
+        const words = await getWordsFromBackground();
+
+        for (const key in words) {
+            const div = document.createElement("div");
+            div.classList.add("element");
+
+            const wordData = words[key];
+            const value = wordData.value;
+            const added = wordData.added;
+
+            // 📅 DATA
+            const date = new Date(added);
+            const dateText = date.toLocaleString();
+
+            div.title = `Dodano: ${dateText}`;
+
+            // 🔤 TEXT
+            const text = document.createElement("span");
+            text.innerText = `${value} : ${key}`;
+            text.style.cursor = "pointer";
+
+            // ✏️ INLINE EDIT
+            text.addEventListener("click", () => {
+                const input = document.createElement("input");
+                input.value = value;
+                input.style.width = "60%";
+
+                div.replaceChild(input, text);
+                input.focus();
+
+                const save = async () => {
+                    const newVal = input.value.trim();
+                    if (!newVal) return;
+
+                    const allWords = await getWords();
+
+                    if (typeof allWords[key] === "object") {
+                        allWords[key].value = newVal;
+                    } else {
+                        allWords[key] = {
+                            value: newVal,
+                            added: Date.now()
+                        };
+                    }
+
+                    chrome.storage.local.set({ words: allWords });
+
+                    text.innerText = `${newVal} : ${key}`;
+                    div.replaceChild(text, input);
+                    log(`Zmieniono: ${key}`);
+                };
+
+                input.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") save();
+                });
+
+                input.addEventListener("blur", save);
+            });
+
+            // ❌ DELETE
+            const delBtn = document.createElement("button");
+            delBtn.innerText = "X";
+            delBtn.style.marginLeft = "10px";
+            delBtn.style.background = "red";
+            delBtn.style.color = "white";
+
+            delBtn.addEventListener("click", async () => {
+                const allWords = await getWords();
+                delete allWords[key];
+
+                chrome.storage.local.set({ words: allWords }, () => {
+                    log(`Usunięto: ${key}`);
+                    toggleWords();
+                    toggleWords();
+                });
+            });
+
+            div.appendChild(text);
+            div.appendChild(delBtn);
+            container.appendChild(div);
+        }
+    } else {
+        container.innerHTML = "";
+        wordLabel.style.display = "none";
+    }
+
+    isShowing = !isShowing;
+}
+
+///////////////////////////////////////////////////
+// ADD WORDS
+///////////////////////////////////////////////////
 
 function inputTranslations() {
-    var translationsToAssing = prompt('Podaj słownik słów (skopiowany tekst w (np "miejsce zamieszkania":"der Wohnort")', '');
-    if (translationsToAssing != "" && translationsToAssing !== null) {
+    const input = prompt(
+        'Podaj słówka np: "kot":"cat","pies":"dog"',
+        ""
+    );
 
-        try {
-            // Dodaj { i } dzięki czemu nie ma tego pierdzielenie się z tym i samo sobie bez tego radzi 
-            translationsToAssing = translationsToAssing.trim(); // dla pewności że nie ma znaku białego
-            translationsToAssing = '{' + translationsToAssing; // taki pushback ale dla debili
-            translationsToAssing += '}'; // dodaj na koniec
+    if (!input) {
+        log("Nie podałeś słówek");
+        return null;
+    }
 
-            translations = JSON.parse(translationsToAssing);
-            translations.haveTranslations = true;
-            logElement.innerHTML += "Dodałeś słówka<br>";
-            return translations;
-        } catch (err) {
-            logElement.innerHTML += "Błąd przy wpisywaniu słówek";
-            console.log("Błąd przy dodawaniu słówek: " + err);
-        }
+    try {
+        const json = JSON.parse("{" + input + "}");
+        log("Dodano słówka");
+        return json;
+    } catch (e) {
+        log("Błąd JSON!");
+        return null;
+    }
+}
 
-
-    } else {
-        console.log("Nic nie podałeś");
-        logElement.innerHTML += "Nie podałeś żadnych słówek<br>";
-        return {};
+async function addWords() {
+    const data = inputTranslations();
+    if (data) {
+        await saveWords(data);
     }
 }
 
 ///////////////////////////////////////////////////
+// DELETE ALL
 ///////////////////////////////////////////////////
 
-//              Main logic
-
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-var isShowingWords = false
-var wordLabel = document.querySelector(".paragraph")
-wordLabel.style.display = 'none';
-
-showWords.addEventListener("click", () => {
-    
-
-    if (!isShowingWords) { // jeśli nie pokazuje słówek to pokaż
-        getWords(); // Pobieranie słówek z localStorage do wewnętrznej zmiennej (Pobiera drugi raz, zobaczymy jak działa)
-        AddWordsFromBackground(); // Pobieranie słówek z background.js po kliknięciu przycisku pokaż słówka
-        setInterval(() => {
-            // getWords(); // Pobieranie słówek z localStorage do wewnętrznej zmiennej co 2 sekundy (Pobiera co 2 sekundy, zobaczymy jak działa)
-        }, 100);
-        wordLabel.style.display = 'block';
-
-        for (var ele in words) {
-            var val = words[ele];
-            // console.log(ele, "\tto\t", val);
-            const newDiv = document.createElement("div");
-            newDiv.classList.add("element");
-            container.appendChild(newDiv);
-            newDiv.innerHTML = val + "\t:\t" + ele;
-        }
-    } else { // jeśli pokazuje słówka to schowaj
-        const childs = document.querySelectorAll(".element");
-        wordLabel.style.display = 'none';
-        for (var i = 0; i < childs.length; i++) {
-            container.removeChild(childs[i]);
-        }
-    }
-    isShowingWords = !isShowingWords;
-})
-
-chrome.runtime.onMessage.addListener(gotMesssage);
-
-function gotMesssage(message, sender, sendResponse) {
-    if (message.desire === undefined) {
-    }
-    if (message.isTranslaation == "inputTranslation") {
-        // message.translations = sendResponse; ?
-    }
+function deleteWords() {
+    clearWords();
+    log("Usunięto wszystkie słowa");
+    container.innerHTML = "";
 }
 
+///////////////////////////////////////////////////
+// BOT
+///////////////////////////////////////////////////
 
-loopStart.addEventListener('click', btnStart)
-function btnStart() {
+function startBot() {
+    log("Start bota");
 
-    // console.log("Start bot");
-    logElement.innerHTML += "Start bota<br>";
+    chrome.tabs.query({ currentWindow: true }, async (tabs) => {
+        const wordsRaw = await getWords();
 
-    chrome.tabs.query({ currentWindow: true }, gotTabs)
-    function gotTabs(tabs) {
-        console.log("szukam okienka instalinga")
-        for (ele in tabs) {
-            if (tabs[ele].url.indexOf("https://instaling.pl/app/") != -1 || tabs[ele].url.indexOf("https://instaling.pl/ling2/") != -1) {
-                console.log("Znalazłem okienko instalinga");
-                var tabOfInstaling = tabs[ele];
-                var foundInstsaling = true;
+        // 👇 BOT dostaje tylko value
+        const words = {};
+        for (const key in wordsRaw) {
+            words[key] = wordsRaw[key].value;
+        }
 
-                // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
-                if (inputErrors !== 'null' && inputErrors !== undefined) {
-                    var errors = inputErrors.value;
-                } else {
-                    var errors = 3;
-                }
+        for (const tab of tabs) {
+            if (
+                tab.url.includes("instaling.pl/app/") ||
+                tab.url.includes("instaling.pl/ling2/")
+            ) {
+                let errors = inputErrors.value || 3;
+                let time = (timeBetween.value || 4) * 1000;
+                if (time < 200) time = 200;
 
-                if (timeBetween == 'null' || timeBetween == undefined || timeBetween.value == undefined || timeBetween.value == 'null') {
-                    var time = 200
-                } else {
-                    var time = timeBetween.value * 1000;
-                    
-                    console.log("jebanie")
-                    console.log(timeBetween.value)
-                    console.log(time)
-
-                    if (time < 200)
-                        time = 200
-                }
-
-                let msg = {
+                chrome.tabs.sendMessage(tab.id, {
                     active: true,
                     sendWords: words,
                     errorsPerRun: errors,
-                    timeBetween: time
-                }
-                chrome.tabs.sendMessage(tabOfInstaling.id, msg)
-                console.log("Wysłałem wiadomość do content.js")
+                    timeBetween: time,
+                });
+
+                log("Bot uruchomiony");
+                return;
             }
         }
 
-        if (foundInstsaling != true) {
-            // console.log("Something wrong");
-            logElement.innerHTML += "Nie znalazłem okienka instalinga <br>";
-            return;
-        }
-    }
+        log("Nie znalazłem instaling");
+    });
 }
 
-loopStop.addEventListener('click', btnStop)
-function btnStop() {
-    logElement.innerHTML += "Stop bota<br>";
+function stopBot() {
+    log("Stop bota");
 
-
-    chrome.tabs.query({ currentWindow: true }, gotTabs)
-    function gotTabs(tabs) {
-
-        for (ele in tabs) {
-            if (tabs[ele].url.indexOf("https://instaling.pl/app/") != -1 || tabs[ele].url.indexOf("https://instaling.pl/ling2/") != -1) {
-                console.log("Znalazłem okienko instalinga");
-                var tabOfInstaling = tabs[ele];
-                var foundInstsaling = true;
-
-                // At this point there is found tab of instaling and ready to use as tabOfInstaling (Object)
-
-                // console.log(tabOfInstaling);
-
-                let msg = { active: false }
-                chrome.tabs.sendMessage(tabOfInstaling.id, msg)
+    chrome.tabs.query({ currentWindow: true }, (tabs) => {
+        for (const tab of tabs) {
+            if (
+                tab.url.includes("instaling.pl/app/") ||
+                tab.url.includes("instaling.pl/ling2/")
+            ) {
+                chrome.tabs.sendMessage(tab.id, { active: false });
+                return;
             }
         }
-
-        if (foundInstsaling != true) {
-            console.log("Something wrong");
-            logElement.innerHTML += "Nie znalazłem okienka instalinga<br>";
-            return;
-        }
-    }
+    });
 }
 
-addWordsBtn.addEventListener('click', btnAddWords);
-function btnAddWords() {
-    saveTranslations(inputTranslations());
-    getWords();
-}
+///////////////////////////////////////////////////
+// EVENTS
+///////////////////////////////////////////////////
 
-deleteWordsBtn.addEventListener('click', btnDeleteWords);
-function btnDeleteWords() {
-    localStorage.clear();
-}
-
-
-
-
-
-
+showWordsBtn.addEventListener("click", toggleWords);
+addWordsBtn.addEventListener("click", addWords);
+deleteWordsBtn.addEventListener("click", deleteWords);
+startBtn.addEventListener("click", startBot);
+stopBtn.addEventListener("click", stopBot);

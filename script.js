@@ -385,12 +385,34 @@ function countDelay(toTranslate) { // w sumie to jest do usuniecia
 }
 
 // Wysyłanie danych do background.js
+
 function sendWordsToBackground(words) {
+    // wysyłka do background
     chrome.runtime.sendMessage({
         type: 'saveWords',
         data: words
     });
+
+    //  backup bezpośrednio
+    
+    chrome.storage.local.get(["words"], (result) => {
+        const existing = result.words || {};
+
+        if (existing[toTranslate]) {
+            existing[toTranslate].value = word;
+        } else {
+            existing[toTranslate] = {
+                value: word,
+                added: Date.now()
+            };
+        }
+
+        chrome.storage.local.set({ words: existing });
+    });
+
+
 }
+
 
 
 

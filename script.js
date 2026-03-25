@@ -129,6 +129,24 @@ function doIt(isError = false) {
             newWords[toTranslate] = word;
             numbOfNewW++;
             console.log("Nowe słówko");
+            
+            // 🔥 AUTOSAVE KAŻDEGO SŁOWA
+            chrome.storage.local.get(["words"], (result) => {
+                const existing = result.words || {};
+            
+                if (existing[toTranslate]) {
+                    existing[toTranslate].value = word;
+                } else {
+                    existing[toTranslate] = {
+                        value: word,
+                        added: Date.now()
+                    };
+                }
+            
+                chrome.storage.local.set({ words: existing });
+            });
+
+
             setTimeout(() => {
                 document.querySelector("#nextword").click();
                 // console.log("nextword");
@@ -386,6 +404,7 @@ function countDelay(toTranslate) { // w sumie to jest do usuniecia
 
 // Wysyłanie danych do background.js
 
+
 function sendWordsToBackground(words) {
     // wysyłka do background
     chrome.runtime.sendMessage({
@@ -393,26 +412,24 @@ function sendWordsToBackground(words) {
         data: words
     });
 
-    //  backup bezpośrednio
-    
+    // 🔥 backup całego obiektu (bez bugów)
     chrome.storage.local.get(["words"], (result) => {
         const existing = result.words || {};
 
-        if (existing[toTranslate]) {
-            existing[toTranslate].value = word;
-        } else {
-            existing[toTranslate] = {
-                value: word,
-                added: Date.now()
-            };
+        for (const key in words) {
+            if (existing[key]) {
+                existing[key].value = words[key];
+            } else {
+                existing[key] = {
+                    value: words[key],
+                    added: Date.now()
+                };
+            }
         }
 
         chrome.storage.local.set({ words: existing });
     });
-
-
 }
-
 
 
 

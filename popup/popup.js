@@ -85,6 +85,11 @@ function log(msg) {
 function getWordsFromBackground() {
     return new Promise((resolve) => {
         chrome.runtime.sendMessage({ type: "getWords" }, async (response) => {
+            if (chrome.runtime.lastError) {
+                console.warn("Brak odbiorcy:", chrome.runtime.lastError.message);
+                resolve({});
+                return;
+            }
             let words = response.words || {};
             words = normalizeWords(words);
             resolve(words);

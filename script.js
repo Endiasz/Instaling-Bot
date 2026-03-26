@@ -39,6 +39,7 @@ function doIt(isError = false) {
     var startSesionBtn = document.querySelector("#start_session_button");
     var word = document.querySelector("#word").innerHTML;
     var speaker = document.querySelector("#answer_page");
+    const speakerVisible = speaker && getComputedStyle(speaker).display !== "none";
     var isLoading = document.querySelector("#loading")
 
 
@@ -56,7 +57,7 @@ function doIt(isError = false) {
     //     return;
     // }
     if (toTranslate == undefined) {
-        consol.error("Błąd pobierania elementu")
+        console.error("Błąd pobierania elementu")
         return;
     }
 
@@ -82,12 +83,20 @@ function doIt(isError = false) {
         return;
     }
 
-    if (sesresult.innerHTML != "") {
-        console.log("Koniec zadań na dzisiaj. Wyłączam bota. Miłego dnia");
+    // 🔥 LEPSZE wykrywanie końca sesji
+    const isEnd =
+        document.body.innerText.includes("Powrót na stronę główną") &&
+        document.body.innerText.includes("Gratulacje");
+
+    if (isEnd) {
+        console.log("Koniec sesji wykryty");
+
         endForToday(translations, newWords);
         stopTheLoop();
         return;
     }
+
+
 
     if (newWord.style.display != "none") {
         // Sprawdź czy jest strona new word
@@ -100,7 +109,7 @@ function doIt(isError = false) {
         return;
     }
 
-    if (isLoading.style.display != 'none') {
+    if (isLoading && getComputedStyle(isLoading).display !== "none") {
 
         return;
     }
@@ -115,7 +124,7 @@ function doIt(isError = false) {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
 
-    if (speaker.style.display == 'block') { // Answear page
+    if (speakerVisible) { // Answear page
 
         if (checkTranslations(toTranslate, translations)) {  // Knowed Word
             console.log("Znam słowo");
@@ -152,7 +161,7 @@ function doIt(isError = false) {
                 // console.log("nextword");
             }, 100);
         }
-    } else if (speaker.style.display === '' || speaker.style.display === 'none') { // Question page
+    } else{ // Question page
 
         if (checkTranslations(toTranslate, translations) && isError) {  // generate mistake
             errorsPerRun--;
@@ -190,9 +199,12 @@ function doIt(isError = false) {
                 }, 100);
             }
         }
-    } else {
-        console.error("Coś tu się odkurwiło !? XDDD");
     }
+    console.log("STATE:", {
+    speakerVisible,
+    hasAnswer: !!answer,
+    toTranslate
+});
 }
 
 
@@ -205,7 +217,8 @@ function doIt(isError = false) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-var TheLoopInterval = setInterval(theLoopFunction(), 5000);
+// var TheLoopInterval = setInterval(theLoopFunction(), 5000);
+var TheLoopInterval = null;
 function theLoopFunction() {
 
     if (Math.round(Math.random() * 6) == 1 && errorsPerRun > 0) {

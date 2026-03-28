@@ -372,8 +372,8 @@ function endForToday(translations, newWordss) { // wypisz cały zasobnik słów 
         document.querySelector("#session_result > p").innerHTML += "<br><p> Wszystkie słówka </p><br>"
         var temp = JSON.stringify(translations);
         temp = temp.trim();
-        temp = temp.replace('{', '')
-        temp = temp.replace('}', '')
+        // temp = temp.replace('{', '')
+        // temp = temp.replace('}', '')
         document.querySelector("#session_result > p").innerHTML += temp;
         console.log(temp)
         console.log(translations)   

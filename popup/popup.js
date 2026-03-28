@@ -5,6 +5,7 @@ const stopBtn = document.querySelector(".stopBot");
 const logElement = document.querySelector(".logs");
 const addWordsBtn = document.querySelector(".addTranslations");
 const deleteWordsBtn = document.querySelector(".deleteTranslations");
+const copyWordsBtn = document.querySelector(".copyWords");
 
 const inputErrors = document.querySelector("#numbOfError");
 const timeBetween = document.querySelector("#timeBetween");
@@ -203,7 +204,7 @@ async function toggleWords() {
 
 function inputTranslations() {
     const input = prompt(
-        'Podaj słówka np: "kot":"cat","pies":"dog"',
+        'Podaj słówka np: {"kot":"cat","pies":"dog"}',
         ""
     );
 
@@ -213,7 +214,7 @@ function inputTranslations() {
     }
 
     try {
-        const json = JSON.parse("{" + input + "}");
+        const json = JSON.parse(input);
         log("Dodano słówka");
         return json;
     } catch (e) {
@@ -238,6 +239,39 @@ function deleteWords() {
     log("Usunięto wszystkie słowa");
     container.innerHTML = "";
 }
+
+
+///////////////////////////////////////////////////
+// Export words
+///////////////////////////////////////////////////
+
+async function exportWordsToClipboard() {
+    const words = await getWords();
+
+    const exportData = {};
+
+    for (const key in words) {
+        const wordData = words[key];
+
+        if (typeof wordData === "object") {
+            exportData[key] = wordData.value;
+        } else {
+            exportData[key] = wordData;
+        }
+    }
+
+    const jsonText = JSON.stringify(exportData, null, 2);
+
+    navigator.clipboard.writeText(jsonText)
+        .then(() => {
+            log("Skopiowano słówka do schowka");
+        })
+        .catch((err) => {
+            console.error("Błąd kopiowania:", err);
+            log("Nie udało się skopiować słówek");
+        });
+}
+
 
 ///////////////////////////////////////////////////
 // BOT
@@ -305,3 +339,4 @@ addWordsBtn.addEventListener("click", addWords);
 deleteWordsBtn.addEventListener("click", deleteWords);
 startBtn.addEventListener("click", startBot);
 stopBtn.addEventListener("click", stopBot);
+copyWordsBtn.addEventListener("click", exportWordsToClipboard);

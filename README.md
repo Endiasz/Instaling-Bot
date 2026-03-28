@@ -93,6 +93,7 @@ Dodaj własne tłumaczenia:
 * ✏️ edycja inline w popupie
 * ❌ usuwanie pojedynczych słów
 * 🕒 data dodania słowa (tooltip)
+* 💾 Backup do schowka
 
 ---
 
